@@ -19,6 +19,7 @@ connection.once("open", () => {
   console.log("Connection to MongoDB bitches!!!!!!!");
 });
 
+//API for users database. Add user and find user so far.
 const usersRouters = require('./routes/users');
 
 app.use('/users', usersRouters);
