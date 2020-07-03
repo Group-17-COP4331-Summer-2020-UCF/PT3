@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 
+
 require("dotenv").config();
 
 const app = express();
@@ -20,7 +21,7 @@ connection.once("open", () => {
 
 const usersRouters = require('./routes/users');
 
-app.use('/users', usersRouter);
+app.use('/users', usersRouters);
 
 app.listen(port, () => {
   console.log(`Server is running bitches!!!! On Port: ${port}`);
