@@ -9,11 +9,13 @@ router.route('/').get((req, res) => {
 
 router.route('/add').post((req, res) => {
     const branch = req.body.branch;
-    const sex = req.body.sex
-    const ageGroup = req.body.ageGroup
-    const ageGroup = req.body.username
+    const sex = req.body.sex;
+    const ageGroup = req.body.ageGroup;
+    const userName = req.body.username;
+    const workout = req.body.workout;
+    const repCount = req.body.repCount;
 
-    const newReps = new reps({branch, sex, ageGroup, username});
+    const newReps = new reps({branch, sex, ageGroup, username, workout, repCount});
 
     newReps.save()
     .then(() => res.json('Reps added!'))
