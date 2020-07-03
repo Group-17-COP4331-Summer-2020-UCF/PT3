@@ -18,6 +18,10 @@ connection.once("open", () => {
   console.log("Connection to MongoDB bitches!!!!!!!");
 });
 
+const usersRouters = require('./routes/users');
+
+app.use('/users', usersRouter);
+
 app.listen(port, () => {
   console.log(`Server is running bitches!!!! On Port: ${port}`);
 });
