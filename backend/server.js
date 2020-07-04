@@ -21,8 +21,12 @@ connection.once("open", () => {
 
 //API for users database. Add user and find user so far.
 const usersRouters = require('./routes/users');
+//API for Army Standards
+const ArmyStandardsRouters = require('./routes/ArmyStandards');
+
 
 app.use('/users', usersRouters);
+app.use('/ArmyStandards', ArmyStandardsRouters);
 
 app.listen(port, () => {
   console.log(`Server is running bitches!!!! On Port: ${port}`);
