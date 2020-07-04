@@ -23,10 +23,13 @@ connection.once("open", () => {
 const usersRouters = require('./routes/users');
 //API for Army Standards
 const ArmyStandardsRouters = require('./routes/ArmyStandards');
+//API for Marine Standards
+const MarineStandardsRouters = require('./routes/MarineStandards');
 
 
 app.use('/users', usersRouters);
 app.use('/ArmyStandards', ArmyStandardsRouters);
+app.use('/MarineStandards', MarineStandardsRouters);
 
 app.listen(port, () => {
   console.log(`Server is running bitches!!!! On Port: ${port}`);
