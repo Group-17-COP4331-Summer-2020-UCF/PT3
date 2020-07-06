@@ -25,11 +25,29 @@ const usersRouters = require('./routes/users');
 const ArmyStandardsRouters = require('./routes/ArmyStandards');
 //API for Marine Standards
 const MarineStandardsRouters = require('./routes/MarineStandards');
+//API for Navy Standards
+const NavyStandardsRouters = require('./routes/NavyStandards');
+//API for AirForce Standards
+const AirForceStandardsRouters = require('./routes/AirForceStandards');
+//API for Army Tests 
+const ArmyTestsRouters = require('./routes/ArmyTests');
+//API for Marine Tests
+const MarineTestsRouters = require('./routes/MarineTests');
+//API for Navy Tests
+const NavyTestsRouters = require('./routes/NavyTests');
+//API for AirForce Tests
+const AirForceTestsRouters = require('./routes/AirForceTests');
 
 
 app.use('/users', usersRouters);
 app.use('/ArmyStandards', ArmyStandardsRouters);
 app.use('/MarineStandards', MarineStandardsRouters);
+app.use('/NavyStandards', NavyStandardsRouters);
+app.use('/AirForceStandards', AirForceStandardsRouters);
+app.use('/ArmyTests', ArmyTestsRouters);
+app.use('/MarineTests', MarineTestsRouters);
+app.use('/NavyTests', NavyTestsRouters);
+app.use('/AirForceTests', AirForceTestsRouters);
 
 app.listen(port, () => {
   console.log(`Server is running bitches!!!! On Port: ${port}`);
