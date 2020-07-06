@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, TouchableOpacity, Text, View } from "react-native";
 
-export default function FlatButton({ text, onPress }) {
+export default function CreateAccountButton({ text, onPress }) {
   return (
     <TouchableOpacity onPress={onPress}>
       <View style={styles.button}>
@@ -16,10 +16,10 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     paddingVertical: 14,
     paddingHorizontal: 10,
-    backgroundColor: "red",
+    backgroundColor: "#fcc05f",
   },
   buttonText: {
-    color: "white",
+    color: "black",
     fontWeight: "bold",
     textTransform: "uppercase",
     fontSize: 16,

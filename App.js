@@ -1,101 +1,27 @@
-import { StatusBar } from "expo-status-bar";
+import "react-native-gesture-handler";
 import React, { useState } from "react";
+
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
 import {
-  StyleSheet,
-  ImageBackground,
-  Text,
-  View,
-  TextInput,
-  Button,
-  ImagePropTypes,
-} from "react-native";
-import FlatButton from "./button.js";
+  StartupScreen,
+  LoginScreen,
+  HomeScreen,
+  SignUpScreen,
+} from "./Screens.js";
+// Imports ----------------------------------------------------------------------------------------------
+
+const Stack = createStackNavigator();
 
 export default function App() {
-  const [enteredGoal, setEnteredGoal] = useState("");
-
-  const goalInputHandler = (enteredText) => {
-    setEnteredGoal(enteredText);
-  };
-
-  const addGoalHandler = () => {
-    console.log(enteredGoal);
-  };
-
   return (
-    <View style={styles.screen}>
-      <ImageBackground
-        source={require("./img/Space.png")}
-        style={{ width: "100%", height: "60%" }}
-      />
-      <Text style={styles.font}>PT3</Text>
-
-      <View style={styles.input}>
-        <TextInput
-          style={{
-            borderColor: "black",
-            borderWidth: 3,
-            width: 200,
-            backgroundColor: "#f9bd2e",
-          }}
-          placeholder="  Username"
-          placeholderTextColor="black"
-          onChangeText={goalInputHandler}
-          value={enteredGoal}
-        />
-        <TextInput
-          style={{
-            borderColor: "black",
-            borderWidth: 3,
-            width: 200,
-            backgroundColor: "#f9bd2e",
-          }}
-          placeholder="  Password"
-          placeholderTextColor="black"
-        />
-      </View>
-      <View style={styles.buttons}>
-        <Button title="Login" onPress={addGoalHandler} />
-
-        <Button title="Sign Up" onPress={addGoalHandler} />
-        <FlatButton text="RED" onPress={addGoalHandler} />
-      </View>
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="Startup" component={StartupScreen} />
+        <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="SignUp" component={SignUpScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  screen: {
-    paddingTop: 30,
-    paddingBottom: 300,
-    backgroundColor: "#2b374b",
-    alignItems: "center",
-  },
-
-  input: {
-    height: 80,
-    width: 1000,
-    justifyContent: "space-between",
-    alignItems: "center",
-    backgroundColor: "#9bd7d5",
-  },
-
-  buttons: {
-    paddingTop: 5,
-    width: 100,
-    height: 90,
-    justifyContent: "space-between",
-    overlayColor: "black",
-  },
-
-  font: {
-    fontSize: 100,
-    fontFamily: "Roboto",
-    paddingBottom: 10,
-    fontWeight: "bold",
-    color: "#f88379",
-  },
-});
