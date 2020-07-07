@@ -1,0 +1,36 @@
+#loginField {
+  padding-top: 5%;
+  padding-bottom: 25%;
+  padding-left: 2%;
+  padding-right: 2%;
+  background-color: rgb(244, 247, 219);
+}
+
+#loginName {
+  background-color: rgb(132, 176, 127);
+}
+
+#loginPassword {
+  background-color: rgb(132, 176, 127);
+}
+
+#loginButton {
+  background-color: rgb(255, 192, 82);
+}
+
+#registerButton {
+  background-color: rgb(255, 192, 82);
+  margin-left: 5px;
+  width: min-content;
+}
+
+#loginHeader {
+  color: rgb(255, 79, 96);
+  padding-bottom: 2%;
+  font-weight: bold;
+  font-size: 100;
+}
+
+#loginContainer {
+  background-color: black;
+}
