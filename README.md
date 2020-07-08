@@ -7,9 +7,17 @@ To test the mobile app:
 $ cd app
 $ npm start
 ```
-### Web App
+### Web Application
 To test the web application:
 ```sh
 $ cd frontend
 $ npm start
+```
+
+#### Running the Web Application for the first time
+```sh
+$ cd frontend
+$ npm install -g npm-install-missing # Installs missing modules.
+$ npm install react-scripts # Install react-scripts package.
+$ npm start # Start development server.
 ```
