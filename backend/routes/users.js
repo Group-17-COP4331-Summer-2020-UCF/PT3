@@ -3,17 +3,17 @@ let User = require('../models/user.model');
 
 router.route('/loginUser').get((req, res) => {
     var query = { username: req.body.username, password: req.body.password};
-    User.find(query)
+    User.findOne(query)
     .then(users => res.json(users))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
 router.route('/searchUser').get((req, res) => {
     var query = { username: req.body.username };
-    User.find(query)
+    User.findOne(query)
     .then(users => res.json(users))
     .catch(err => res.status(400).json('Error: ' + err));
-    
+
 });
 
 router.route('/addUser').post((req, res) => {

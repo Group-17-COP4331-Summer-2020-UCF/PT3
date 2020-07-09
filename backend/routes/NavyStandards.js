@@ -3,7 +3,7 @@ let NavyStandard = require('../models/NavyStandard.model');
 
 router.route('/searchNavyStandard').get((req, res) => {
     var query = { sex: req.body.sex, age: req.body.age};
-    NavyStandard.find(query)
+    NavyStandard.findOne(query)
     .then(NavyStandards => res.json(NavyStandards))
     .catch(err => res.status(400).json('Error: ' + err));
 });

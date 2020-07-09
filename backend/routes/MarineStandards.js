@@ -3,7 +3,7 @@ let MarineStandard = require('../models/MarineStandard.model');
 
 router.route('/searchMarineStandard').get((req, res) => {
     var query = { sex: req.body.sex, age: req.body.age};
-    MarineStandard.find(query)
+    MarineStandard.findOne(query)
     .then(Marinestandards => res.json(Marinestandards))
     .catch(err => res.status(400).json('Error: ' + err));
 });

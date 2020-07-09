@@ -3,7 +3,7 @@ let ArmyStandard = require('../models/ArmyStandard.model');
 
 router.route('/searchArmyStandard').get((req, res) => {
     var query = { sex: req.body.sex, age: req.body.age};
-    ArmyStandard.find(query)
+    ArmyStandard.findOne(query)
     .then(Armystandards => res.json(Armystandards))
     .catch(err => res.status(400).json('Error: ' + err));
 });
