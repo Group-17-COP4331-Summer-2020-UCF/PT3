@@ -13,7 +13,7 @@ router.route('/searchUser').get((req, res) => {
     User.find(query)
     .then(users => res.json(users))
     .catch(err => res.status(400).json('Error: ' + err));
-
+    
 });
 
 router.route('/addUser').post((req, res) => {
