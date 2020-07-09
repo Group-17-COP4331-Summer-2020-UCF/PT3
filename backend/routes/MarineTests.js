@@ -1,7 +1,7 @@
 const router = require('express').Router();
 let MarineTest = require('../models/MarineTest.model');
 
-router.route('/searchMarineTest').get((req, res) => {
+router.route('/searchMarineTest').post((req, res) => {
     var query = { username: req.body.username};
     MarineTest.find(query)
     .then(MarineTests => res.json(MarineTests))

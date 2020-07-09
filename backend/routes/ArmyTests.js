@@ -1,7 +1,7 @@
 const router = require('express').Router();
 let ArmyTest = require('../models/ArmyTest.model');
 
-router.route('/searchArmyTest').get((req, res) => {
+router.route('/searchArmyTest').post((req, res) => {
     var query = { username: req.body.username};
     ArmyTest.find(query)
     .then(ArmyTests => res.json(ArmyTests))

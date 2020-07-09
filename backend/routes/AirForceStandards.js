@@ -1,7 +1,7 @@
 const router = require('express').Router();
 let AirForceStandard = require('../models/AirForceStandard.model');
 
-router.route('/searchAirForceStandard').get((req, res) => {
+router.route('/searchAirForceStandard').post((req, res) => {
     var query = { sex: req.body.sex, age: req.body.age};
     AirForceStandard.findOne(query)
     .then(AirForcestandards => res.json(AirForcestandards))

@@ -1,7 +1,7 @@
 const router = require('express').Router();
 let ArmyStandard = require('../models/ArmyStandard.model');
 
-router.route('/searchArmyStandard').get((req, res) => {
+router.route('/searchArmyStandard').post((req, res) => {
     var query = { sex: req.body.sex, age: req.body.age};
     ArmyStandard.findOne(query)
     .then(Armystandards => res.json(Armystandards))

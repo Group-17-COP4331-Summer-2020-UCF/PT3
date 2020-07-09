@@ -1,7 +1,7 @@
 const router = require('express').Router();
 let NavyTest = require('../models/NavyTest.model');
 
-router.route('/searchNavyTest').get((req, res) => {
+router.route('/searchNavyTest').post((req, res) => {
     var query = { username: req.body.username};
     NavyTest.find(query)
     .then(NavyTests => res.json(NavyTests))

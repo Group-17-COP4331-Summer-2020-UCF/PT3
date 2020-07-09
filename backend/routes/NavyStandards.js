@@ -1,7 +1,7 @@
 const router = require('express').Router();
 let NavyStandard = require('../models/NavyStandard.model');
 
-router.route('/searchNavyStandard').get((req, res) => {
+router.route('/searchNavyStandard').post((req, res) => {
     var query = { sex: req.body.sex, age: req.body.age};
     NavyStandard.findOne(query)
     .then(NavyStandards => res.json(NavyStandards))
