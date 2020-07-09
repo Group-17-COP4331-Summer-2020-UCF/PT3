@@ -1,14 +1,14 @@
 const router = require('express').Router();
 let User = require('../models/user.model');
 
-router.route('/loginUser').get((req, res) => {
+router.route('/loginUser').post((req, res) => {
     var query = { username: req.body.username, password: req.body.password};
     User.findOne(query)
     .then(users => res.json(users))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/searchUser').get((req, res) => {
+router.route('/searchUser').post((req, res) => {
     var query = { username: req.body.username };
     User.findOne(query)
     .then(users => res.json(users))
