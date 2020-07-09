@@ -6,14 +6,6 @@
   background-color: rgb(244, 247, 219);
 }
 
-#loginName {
-  background-color: rgb(132, 176, 127);
-}
-
-#loginPassword {
-  background-color: rgb(132, 176, 127);
-}
-
 #loginButton {
   background-color: rgb(255, 192, 82);
 }
@@ -46,10 +38,14 @@
 
 #registerDiv {
   padding-top: 5%;
-  padding-bottom: 25%;
+  padding-bottom: 50%;
   padding-left: 2%;
   padding-right: 2%;
   background-color: rgb(244, 247, 219);
 
   display: none;
+}
+
+.form-control {
+  background-color: rgb(132, 176, 127);
 }

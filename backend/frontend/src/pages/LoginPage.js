@@ -1,8 +1,8 @@
 import React from 'react';
-import Tour from '../components/Tour'
-import Login from '../components/Login';
-import Footer from '../components/Footer';
-import Navigation from '../components/Navigation';
+import Tour from '../components/login/Tour'
+import Login from '../components/login/Login';
+import Footer from '../components/general/Footer';
+import Navigation from '../components/general/Navigation';
 
 function LoginPage() {
     return(

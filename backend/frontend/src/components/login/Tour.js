@@ -1,5 +1,5 @@
 import React from 'react';
-import '../css/login/Tour.css'
+import '../../css/login/Tour.css'
 function Tour()
 {
     return(

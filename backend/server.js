@@ -49,6 +49,10 @@ app.use('/MarineTests', MarineTestsRouters);
 app.use('/NavyTests', NavyTestsRouters);
 app.use('/AirForceTests', AirForceTestsRouters);
 
+if (process.env.NODE_ENV === 'production') {
+}
+app.use(express.static('frontend/build'));
+
 app.listen(port, () => {
   console.log(`Server is running bitches!!!! On Port: ${port}`);
 });

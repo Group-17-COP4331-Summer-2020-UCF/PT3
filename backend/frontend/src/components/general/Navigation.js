@@ -1,5 +1,5 @@
 import React from 'react';
-import '../css/general/Navigation.css'
+import '../../css/general/Navigation.css'
 import 'bootstrap/dist/css/bootstrap.css';
 
 function Navigation()
