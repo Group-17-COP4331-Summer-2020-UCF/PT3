@@ -1,6 +1,6 @@
 #loginField {
   padding-top: 5%;
-  padding-bottom: 25%;
+  padding-bottom: 22%;
   padding-left: 2%;
   padding-right: 2%;
   background-color: rgb(244, 247, 219);
@@ -33,4 +33,23 @@
 
 #loginContainer {
   background-color: black;
+}
+
+#loginDiv {
+  padding-top: 5%;
+  padding-bottom: 25%;
+  padding-left: 2%;
+  padding-right: 2%;
+  background-color: rgb(244, 247, 219);
+  display: inline-block;
+}
+
+#registerDiv {
+  padding-top: 5%;
+  padding-bottom: 25%;
+  padding-left: 2%;
+  padding-right: 2%;
+  background-color: rgb(244, 247, 219);
+
+  display: none;
 }
