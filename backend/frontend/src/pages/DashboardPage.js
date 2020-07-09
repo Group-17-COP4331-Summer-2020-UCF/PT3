@@ -6,6 +6,9 @@ function DashboardPage() {
     return(
         <div id='dashboard'>
             <Navigation />
+            <h1>
+                You are logged in!
+            </h1>
             <Footer />
         </div>
     );
