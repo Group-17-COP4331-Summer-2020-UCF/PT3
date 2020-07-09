@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-d
 
 // Page imports.
 import LoginPage from './pages/LoginPage';
+import DashboardPage from './pages/DashboardPage';
 
 function App() {
   return (
@@ -11,8 +12,11 @@ function App() {
       <div className="App">
         <Router>
           <Switch>
-            <Route path="/" exact>
+          <Route path="/" exact>
               <LoginPage/>
+            </Route>
+            <Route path="/dashboard" exact>
+              <DashboardPage/>
             </Route>
             <Redirect to="/" />
           </Switch>  

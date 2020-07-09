@@ -44,7 +44,8 @@ function Login()
                 localStorage.setItem('user_data', JSON.stringify(user));
 
                 setMessage('');
-                window.location.href = '/cards';
+                // set cookies
+                window.location.href = '/dashboard';
             }
         }
         catch(e)
@@ -92,7 +93,9 @@ function Login()
                 localStorage.setItem('user_data', JSON.stringify(user));
 
                 setMessage('Registered successfully');
-                // window.location.href = '/cards';
+                // setup cookies
+                // redirect
+                window.location.href = '/dashboard';
             }
         }
         catch(e)
