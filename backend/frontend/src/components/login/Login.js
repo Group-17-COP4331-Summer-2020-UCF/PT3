@@ -22,21 +22,27 @@ function Login()
     {
         event.preventDefault();
 
-        var js = '{"login":"'
+        var js = '{"username":"'
             + loginUsername.value
             + '","password":"'
             + loginPassword.value +'"}';
 
         try
         {    
-            const response = await fetch(BASE_URL + 'login',
+            const response = await fetch(BASE_URL + 'users/loginUser',
                 {method:'POST',body:js,headers:{'Content-Type': 'application/json'}});
 
             var res = JSON.parse(await response.text());
 
+            console.log(response);
+            if (res == null)
+            {
+                setMessage('User/Password incorrect');
+                return;
+            }
             if( res.id <= 0 )
             {
-                setMessage('User/Password combination incorrect');
+                setMessage('User/Password incorrect');
             }
             else
             {
@@ -45,6 +51,8 @@ function Login()
 
                 setMessage('');
                 // set cookies
+                // saveCookie(loginUsername.value, loginPassword.value, "user");
+                // redirect
                 window.location.href = '/dashboard';
             }
         }
@@ -141,6 +149,15 @@ function setRegister() {
     document.getElementById("loginDiv").style.display = "none";
     document.getElementById("registerDiv").style.display = "inline-block";
     document.getElementById("loginField").style.paddingBottom = "9.3%";
+}
+
+function saveCookie(username, password, name)
+{
+	var minutes = 20;
+	var date = new Date();
+	date.setTime(date.getTime()+(minutes*60*1000));
+	document.cookie = "username=" + username + ";expires=" + date.toGMTString();
+	document.cookie = "password=" + password + ";expires=" + date.toGMTString();
 }
 
 export default Login;
