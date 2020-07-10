@@ -16,7 +16,7 @@ function Dashboard()
     };
 
     return(
-        <div className="col-sm-2 countainer-fluid full-height" id="loginField">
+        <div class="dashboard">
             <h1 id="loginHeader">
                 PT3
             </h1>
