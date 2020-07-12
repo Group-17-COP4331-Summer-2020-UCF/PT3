@@ -1,23 +1,48 @@
+/* Gradients created on: 
+https://cssgradient.io/ */
+
 #loginField {
-  padding-top: 5%;
-  padding-bottom: 22%;
+  padding-top: 7%;
+  padding-bottom: 18%;
   padding-left: 2%;
-  padding-right: 2%;
-  background-color: rgb(244, 247, 219);
+  padding-right: 2%;background: rgb(87,98,213);
+  background: linear-gradient(0deg, rgba(87,98,213,1) 0%, rgba(32,233,169,1) 100%);
+}
+
+#buttons {
+  align-content: center;
+}
+
+.button-gradient {
+  border-radius: 4px;
+  background: rgb(0,244,172);
+  background: linear-gradient(90deg, rgba(0,244,172,1) 0%, rgba(97,82,216,1) 100%);
 }
 
 #loginButton {
-  background-color: rgb(255, 192, 82);
+  background: rgb(0,130,108);
+  background: linear-gradient(90deg, rgba(0,130,108,1) 0%, rgba(78,68,124,1) 100%);
+  font-weight: bold;
+  color: white;  
+  width: 95%;
+  margin-bottom: 4px;
+  margin-top: 4px;
+  border-color: transparent;
 }
 
 #registerButton {
-  background-color: rgb(255, 192, 82);
-  margin-left: 5px;
-  width: min-content;
+  background: rgb(0,130,108);
+  background: linear-gradient(90deg, rgba(0,130,108,1) 0%, rgba(78,68,124,1) 100%);
+  font-weight: bold;
+  color: white;
+  width: 95%;
+  margin-bottom: 4px;
+  margin-top: 4px;
+  border-color: transparent;
 }
 
 #loginHeader {
-  color: rgb(255, 79, 96);
+  color: rgb(68, 55, 64);
   padding-bottom: 2%;
   font-weight: bold;
   font-size: 100;
@@ -32,7 +57,7 @@
   padding-bottom: 25%;
   padding-left: 2%;
   padding-right: 2%;
-  background-color: rgb(244, 247, 219);
+  background-color: transparent;
   display: inline-block;
 }
 
@@ -41,11 +66,14 @@
   padding-bottom: 50%;
   padding-left: 2%;
   padding-right: 2%;
-  background-color: rgb(244, 247, 219);
-
+  /* background-color: transparent; */
   display: none;
 }
 
 .form-control {
-  background-color: rgb(132, 176, 127);
+  background-color: white;
+}
+
+.top-div {
+  margin-bottom: 6px;
 }

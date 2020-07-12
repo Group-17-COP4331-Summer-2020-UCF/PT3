@@ -121,9 +121,16 @@ function Login()
             <div id="loginDiv">
                 <span id="loginResult">{message}</span><br />
                 <input type="text" className="form-control" id="loginUsername" placeholder="Username" ref={(c) => loginUsername = c} /><br />
-                <input type="password" className="form-control" id="loginPassword" placeholder="Password" ref={(c) => loginPassword = c} /><br />
-                <input type="button" id="loginButton" className="btn btn-light" value="Login" onClick={doLogin} />
-                <input type="button" id="registerButton" className="btn btn-light" value="Register" onClick={setRegister} />
+                <input type="password" className="form-control" id="loginPassword" placeholder="Password" ref={(c) => loginPassword = c} /
+                ><br />
+                <div id="buttons">
+                    <div className="button-gradient top-div">
+                        <input type="button" id="loginButton" className="btn btn-light" value="Login" onClick={doLogin} />
+                    </div>
+                    <div className="button-gradient">
+                        <input type="button" id="registerButton" className="btn btn-light" value="Register" onClick={setRegister} />
+                    </div>
+                </div>
             </div>
             <div id="registerDiv">
                 <span id="loginResult">{message}</span><br />
@@ -132,8 +139,12 @@ function Login()
                 <input type="password" className="form-control" id="loginPassword" placeholder="Password" ref={(c) => registerPassword = c} /><br />
                 <input type="password" className="form-control" id="loginPasswordConfirm" placeholder="Confirm Password" ref={(c) => registerPasswordConfirm = c} /><br />
                 <input type="email" className="form-control" id="loginEmail" placeholder="Email" ref={(c) => registerEmail = c} /><br />
-                <input type="button" id="loginButton" className="btn btn-light" value="Login" onClick={setLogin} />
-                <input type="button" id="registerButton" className="btn btn-light" value="Register" onClick={doRegister} />
+                <div className="button-gradient top-div">
+                    <input type="button" id="loginButton" className="btn btn-light" value="Login" onClick={setLogin} />                
+                </div>
+                <div className="button-gradient">
+                    <input type="button" id="registerButton" className="btn btn-light" value="Register" onClick={doRegister} />
+                </div>
             </div>
         </div>
     );

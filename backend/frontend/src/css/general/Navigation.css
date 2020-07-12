@@ -1,8 +1,13 @@
 nav {
-    background-color: rgb(50, 56, 69);
+    background-color: rgb(73, 82, 100);
 }
 
 #branding {
-    color: rgb(255, 79, 96);
+    color: rgb(0, 236, 175);
     font-weight: bold;
+}
+
+.navbar-button-custom {
+    font-weight: bold;
+
 }

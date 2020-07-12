@@ -10,6 +10,7 @@ function Footer()
             <cite title="Source Title">
             Physical Test Training Tracker - For COP-4331 Summer 2020
             </cite>
+            <br /><br />
         </footer>
     );
 };
