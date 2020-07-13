@@ -1,5 +1,6 @@
 #footer {
     /* background-color: inherit; */
     background-color: rgb(73, 82, 100);
-    color: white;
+    font-weight: bold;
+    color: rgb(0, 236, 175);
 }

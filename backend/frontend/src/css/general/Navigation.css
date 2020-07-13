@@ -7,7 +7,7 @@ nav {
     font-weight: bold;
 }
 
-.navbar-button-custom {
+#navbar-button-custom a {
     font-weight: bold;
-
+    color: rgb(0, 236, 175);
 }
