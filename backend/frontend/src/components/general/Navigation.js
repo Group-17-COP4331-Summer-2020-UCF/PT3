@@ -1,15 +1,16 @@
 import React from 'react';
-import {Navbar, Nav, Button, Form, FormControl} from 'react-bootstrap';
+import Logout from '../dashboard/Logout'
+import {Navbar, Nav} from 'react-bootstrap';
 import '../../css/general/Navigation.css';
 import 'bootstrap/dist/css/bootstrap.css';
 
 function Navigation()
 {
     return(
-        <Navbar fixed="top" bg="" variant="dark">
+        <Navbar>
             <Navbar.Brand id="branding" href="/">Physical Test Training Tracker</Navbar.Brand>
-            <Nav className="ml-auto">
-                <Nav.Link href="/dashboard">Logout</Nav.Link>
+            <Nav className="ml-auto" id="navbar-button-custom">
+                <Logout />
                 <Nav.Link href="/">About</Nav.Link>
                 <Nav.Link href="/">Home</Nav.Link>
             </Nav>
