@@ -56,6 +56,9 @@ function Login()
                 Cookie.saveCookie("username", loginUsername.value);
                 Cookie.saveCookie("password", Hasher(loginPassword.value));
                 Cookie.saveCookie("login", "true");
+                Cookie.saveCookie("name", res.name);
+                Cookie.saveCookie("email", res.email);
+
                 // redirect
                 window.location.href = '/dashboard';
             }
