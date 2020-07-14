@@ -1,16 +1,5 @@
 #trainer-row {
   margin: 0px;
-  margin-left: 2px;
-  margin-right: 2px;
-  align-content: center;
-}
-#dashboard-container {
-  margin: 0px;
-  margin-left: 4px;
-  margin-right: 4px;
-  border: 0px;
-  width: 100%;
-  height: 700px; /*temp for prototyping*/
 }
 
 #dashboard {
@@ -19,16 +8,5 @@
 }
 
 .column-hover-custom {
-  margin: 6px;
-  margin-bottom: 100px;
-  margin-top: 10px;
-}
-
-/* Main clusters */
-#user-cluster {}
-
-#history-cluster {}
-
-#test-cluster {
-  width: 38.5%;
+  padding: 0px;
 }
