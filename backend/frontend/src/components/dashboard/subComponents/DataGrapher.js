@@ -8,7 +8,7 @@ import { Container, Row, Col } from 'react-bootstrap'
 function DataGrapher() {
     // this is currently a prototype page of the layout of the data.
     return (
-        <Row id="data-grapher-wrapper">
+        <Row id="data-grapher-wrapper" fluid>
             <h1>
                 Data Grapher!
             </h1>

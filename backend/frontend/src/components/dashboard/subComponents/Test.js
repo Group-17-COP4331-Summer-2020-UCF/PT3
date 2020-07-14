@@ -8,7 +8,7 @@ import { Container, Row, Col } from 'react-bootstrap'
 function Test() {
     // this is currently a prototype page of the layout of the data.
     return (
-        <Row id="test-wrapper">
+        <Row id="test-wrapper" fluid>
             <h1>
                 Do a new test!
             </h1>

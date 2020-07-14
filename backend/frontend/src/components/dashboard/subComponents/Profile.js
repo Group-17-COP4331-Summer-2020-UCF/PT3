@@ -8,7 +8,7 @@ import { Container, Row, Col } from 'react-bootstrap'
 function Profile() {
     // this is currently a prototype page of the layout of the data.
     return (
-        <Row id="profile-wrapper">
+        <Row id="profile-wrapper" fluid>
             <h1>
                 Your profile data!
             </h1>

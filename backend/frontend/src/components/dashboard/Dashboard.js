@@ -13,20 +13,20 @@ function Dashboard()
 {
     // this is currently a prototype page of the layout of the data.
     return(   
-        <div id="dashboard-container">
-            <Row id="trainer-row">
-                <Col id="user-cluster" className="column-hover-custom" lg={3}>
-                    <Profile/>
-                    <Customizer/>
+        <Container fluid>
+            <Row>
+                <Col className="column-hover-custom" lg={4}>
+                    <Profile />
+                    <Customizer />
                 </Col>
-                <Col id="history-cluster" className="column-hover-custom" lg={4}>
-                    <DataGrapher/>
+                <Col className="column-hover-custom" lg={4}>
+                    <DataGrapher />
                 </Col>
-                <div id="test-cluster" className="column-hover-custom">
-                    <Test/>
-                </div>
+                <Col className="column-hover-custom" lg={4}>
+                    <Test />
+                </Col>
             </Row>
-        </div>
+        </Container>
     );
 };
 

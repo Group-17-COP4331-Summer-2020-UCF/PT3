@@ -8,7 +8,7 @@ import { Container, Row, Col } from 'react-bootstrap'
 function Customizer() {
     // this is currently a prototype page of the layout of the data.
     return (
-        <Row id="customizer-wrapper">
+        <Row id="customizer-wrapper" fluid>
             <h1>
                 Here we change some things!
             </h1>
