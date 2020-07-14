@@ -20,14 +20,8 @@ export default function SignUpButton({ text, onPress }) {
 }
 
 const styles = StyleSheet.create({
-  button: {
-    borderRadius: 10,
-    paddingVertical: 14,
-    paddingHorizontal: 10,
-    //backgroundColor: "#909cc2",
-  },
   buttonText: {
-    color: "white",
+    color: "#FFFFFF",
     fontWeight: "bold",
     //textTransform: "uppercase",
     fontSize: 20,
@@ -36,16 +30,8 @@ const styles = StyleSheet.create({
   },
   circleGradient: {
     margin: 4,
-    backgroundColor: "#43373F90",
+    backgroundColor: "#43373F99",
     borderRadius: 5,
     height: 40,
-  },
-  visit: {
-    margin: 4,
-    paddingHorizontal: 6,
-    textAlign: "center",
-    backgroundColor: "white",
-    color: "#008f68",
-    fontSize: 12,
   },
 });

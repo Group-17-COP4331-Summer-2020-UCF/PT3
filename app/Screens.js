@@ -4,24 +4,92 @@ import {
   Text,
   View,
   TextInput,
-  Button,
   TouchableOpacity,
   Image,
 } from "react-native";
 import { CheckBox } from "react-native-elements";
 import { LinearGradient } from "expo-linear-gradient";
+import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
+import { MaterialCommunityIcons } from "react-native-vector-icons";
+import { mdiCogOutline } from "@mdi/js";
 
 import LoginButton from "./loginButton.js";
 import SignUpButton from "./signUpButton.js";
 import GetStartedButton from "./getStartedButton.js";
 import CreateAccountButton from "./createAccountButton.js";
-import PT3 from "./pt3Logo.js";
+import BackButton from "./backButton.js";
+import LogOutButton from "./logoutButton.js";
+import SwipeyButton from "./swipeButton.js";
 import { StatusBar } from "react-native";
+
+//imports
+
+export const Tab = createMaterialBottomTabNavigator();
+
+export const MainScreen = ({ navigation }) => {
+  return (
+    <Tab.Navigator
+      initialRouteName="Feed"
+      activeColor="#5762D5"
+      style={{ backgroundColor: "orange" }}
+    >
+      <Tab.Screen
+        name="Feed"
+        component={HomeScreen}
+        options={{
+          tabBarLabel: "Home",
+          tabBarColor: "black",
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons name="home" color={color} size={26} />
+          ),
+        }}
+      />
+
+      <Tab.Screen
+        name="Profile"
+        component={ProfileScreen}
+        options={{
+          tabBarLabel: "Profile",
+          tabBarColor: "#2a2c2d",
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons name="account" color={color} size={26} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Training"
+        component={TrainingScreen}
+        options={{
+          tabBarLabel: "Training",
+          tabBarColor: "red",
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons name="dumbbell" color={color} size={26} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Settings"
+        component={SettingsScreen}
+        options={{
+          tabBarLabel: "Settings",
+          tabBarColor: "#2a2c2d",
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons
+              name="settings-outline"
+              color={color}
+              size={26}
+            />
+          ),
+        }}
+      />
+    </Tab.Navigator>
+  );
+};
 
 export const StartupScreen = ({ navigation }) => {
   return (
     <LinearGradient
-      style={styles.gradientBackground}
+      style={styles.screen}
       colors={["#4E576A", "#211D1D", "black"]}
     >
       <LinearGradient style={styles.container} colors={["#20E9A9", "#5762D5"]}>
@@ -91,17 +159,6 @@ export const LoginScreen = ({ navigation }) => {
   );
 };
 
-export const HomeScreen = ({ navigation }) => {
-  return (
-    <View style={styles.screen}>
-      <View>
-        <Text>This is the homescreen</Text>
-        <Button title="Sign Out" onPress={() => navigation.popToTop()} />
-      </View>
-    </View>
-  );
-};
-
 export const SignUpScreen = ({ navigation }) => {
   return (
     <LinearGradient
@@ -156,18 +213,98 @@ export const SignUpScreen = ({ navigation }) => {
             onPress={() => navigation.navigate("Login")}
           />
 
-          <Button title="Back to Sign-In" onPress={() => navigation.goBack()} />
+          <BackButton
+            text="Back to Login"
+            onPress={() => navigation.goBack()}
+          />
         </View>
       </LinearGradient>
     </LinearGradient>
   );
 };
 
+export const HomeScreen = ({ navigation }) => {
+  return (
+    <LinearGradient colors={["#20E9A9", "#5762D5"]} style={styles.screen}>
+      <Text>HOME SCREEN</Text>
+    </LinearGradient>
+  );
+};
+
 export const ProfileScreen = ({ navigation }) => {
   return (
-    <View>
-      <Text>This is the profile screen</Text>
-    </View>
+    <LinearGradient
+      colors={["#20E9A9", "#5762D5"]}
+      style={styles.screen}
+    ></LinearGradient>
+  );
+};
+
+export const TrainingScreen = ({ navigation }) => {
+  return (
+    <LinearGradient colors={["#20E9A9", "#5762D5"]} style={styles.screen}>
+      <View>
+        <SwipeyButton onSwipe={() => navigation.navigate("AirForce")} />
+        <Text>AirForce Test</Text>
+
+        <SwipeyButton onSwipe={() => navigation.navigate("Army")} />
+        <Text>Army Test</Text>
+
+        <SwipeyButton onSwipe={() => navigation.navigate("Marines")} />
+        <Text>Marines Test</Text>
+
+        <SwipeyButton onSwipe={() => navigation.navigate("Navy")} />
+        <Text>Navy Test</Text>
+      </View>
+    </LinearGradient>
+  );
+};
+
+export const SettingsScreen = ({ navigation }) => {
+  return (
+    <LinearGradient colors={["#20E9A9", "#5762D5"]} style={styles.screen}>
+      <Text>This is the settings screen</Text>
+      <LogOutButton
+        text="Logout"
+        onPress={() => navigation.navigate("Login")}
+      />
+    </LinearGradient>
+  );
+};
+
+export const AirForceScreen = ({ navigation }) => {
+  return (
+    <LinearGradient colors={["#20E9A9", "#5762D5"]} style={styles.screen}>
+      <Text>This is the AirForce TEST!!!!!!!!</Text>
+      <LogOutButton text="Back" onPress={() => navigation.goBack()} />
+    </LinearGradient>
+  );
+};
+
+export const ArmyScreen = ({ navigation }) => {
+  return (
+    <LinearGradient colors={["#20E9A9", "#5762D5"]} style={styles.screen}>
+      <Text>This is the ARMY TEST!!!!!</Text>
+      <LogOutButton text="Back" onPress={() => navigation.goBack()} />
+    </LinearGradient>
+  );
+};
+
+export const MarineScreen = ({ navigation }) => {
+  return (
+    <LinearGradient colors={["#20E9A9", "#5762D5"]} style={styles.screen}>
+      <Text>This is the Marines TEST!!!</Text>
+      <LogOutButton text="Back" onPress={() => navigation.goBack()} />
+    </LinearGradient>
+  );
+};
+
+export const NavyScreen = ({ navigation }) => {
+  return (
+    <LinearGradient colors={["#20E9A9", "#5762D5"]} style={styles.screen}>
+      <Text>This is the Navy Test!!!!</Text>
+      <LogOutButton text="Back" onPress={() => navigation.goBack()} />
+    </LinearGradient>
   );
 };
 
