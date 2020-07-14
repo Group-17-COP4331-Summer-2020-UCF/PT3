@@ -8,7 +8,7 @@ import { mdiCogOutline } from "@mdi/js";
 
 import { styles } from "../styles/styles.js";
 
-import { FancyButton } from "../components/fancyButton.js";
+import FancyButton from "../components/fancyButton.js";
 
 export const AirForceScreen = ({ navigation }) => {
   return (

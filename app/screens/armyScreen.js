@@ -5,7 +5,7 @@ import { LinearGradient } from "expo-linear-gradient";
 
 import { styles } from "../styles/styles.js";
 
-import { FancyButton } from "../components/fancyButton.js";
+import FancyButton from "../components/fancyButton.js";
 
 export const ArmyScreen = ({ navigation }) => {
   return (

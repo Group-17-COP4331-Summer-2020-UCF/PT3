@@ -13,6 +13,7 @@ import { AirForceScreen } from "./screens/airForceScreen.js";
 import { ArmyScreen } from "./screens/armyScreen.js";
 import { MarineScreen } from "./screens/marineScreen.js";
 import { NavyScreen } from "./screens/navyScreen.js";
+import { SettingsScreen } from "./screens/settingsScreen.js";
 // Imports ----------------------------------------------------------------------------------------------
 
 const Stack = createStackNavigator();
@@ -26,6 +27,7 @@ export default function App() {
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Main" component={MainScreen} />
         <Stack.Screen name="SignUp" component={SignUpScreen} />
+        <Stack.Screen name="Settings" component={SettingsScreen} />
         <Stack.Screen name="AirForce" component={AirForceScreen} />
         <Stack.Screen name="Army" component={ArmyScreen} />
         <Stack.Screen name="Marines" component={MarineScreen} />
