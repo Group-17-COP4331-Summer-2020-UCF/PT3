@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import '../../css/dashboard/Dashboard.css';
-import React, { Profiler } from 'react';
+import React from 'react';
 import {Container, Row, Col} from 'react-bootstrap'
 import Profile from './subComponents/Profile'
 import Customizer from './subComponents/Customizer'

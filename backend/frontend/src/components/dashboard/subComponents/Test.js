@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import '../../../css/dashboard/subComponents/Test.css';
-import React, { Profiler } from 'react';
-import { Container, Row, Col } from 'react-bootstrap'
+import React from 'react';
+import { Row } from 'react-bootstrap'
 
 // const BASE_URL = 'https://large-project-2020.herokuapp.com/';
 
