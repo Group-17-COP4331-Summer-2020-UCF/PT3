@@ -6,23 +6,21 @@ export default class Cookie {
         date.setTime(date.getTime() + (minutes * 60 * 1000));
         document.cookie = name + "=" + value + ";expires=" + date.toGMTString();
     }
-    static getCookie(name) {
-        var dc = document.cookie;
-        var prefix = name + "=";
-        var begin = dc.indexOf("; " + prefix);
-        if (begin === -1) {
-            begin = dc.indexOf(prefix);
-            if (begin !== 0) return null;
-        }
-        else {
-            begin += 2;
-            var end = document.cookie.indexOf(";", begin);
-            if (end === -1) {
-                end = dc.length;
+    static getCookie(cname) {
+        var name = cname + "=";
+        var decodedCookie = decodeURIComponent(document.cookie);
+        var ca = decodedCookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            // eslint-disable-next-line
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            // eslint-disable-next-line
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
             }
         }
-        // because unescape has been deprecated, replaced with decodeURI
-        //return unescape(dc.substring(begin + prefix.length, end));
-        return decodeURI(dc.substring(begin + prefix.length, end));
+        return "";
     }
 }
