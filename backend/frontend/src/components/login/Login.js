@@ -30,32 +30,32 @@ function Login()
             + Hasher(loginPassword.value) +'"}';
 
         try
-        {    
+        {
+            document.getElementById("loginResult").innerHTML = "Logging in...";
             const response = await fetch(BASE_URL + 'users/loginUser',
                 {method:'POST',body:js,headers:{'Content-Type': 'application/json'}});
 
             var res = JSON.parse(await response.text());
 
             console.log(response);
-            if (res == null)
+            if (res == null || res.id <= 0)
             {
-                setMessage('User/Password incorrect');
+                document.getElementById("loginResult").innerHTML = 'User/Password incorrect';
                 return;
-            }
-            if( res.id <= 0 )
-            {
-                setMessage('User/Password incorrect');
             }
             else
             {
                 var user = {firstName:res.firstName,lastName:res.lastName,id:res.id}
                 localStorage.setItem('user_data', JSON.stringify(user));
 
-                setMessage('');
+                document.getElementById("loginResult").innerHTML = "Please wait";
                 // set cookies
                 Cookie.saveCookie("username", loginUsername.value);
                 Cookie.saveCookie("password", Hasher(loginPassword.value));
                 Cookie.saveCookie("login", "true");
+                Cookie.saveCookie("name", res.name);
+                Cookie.saveCookie("email", res.email);
+
                 // redirect
                 window.location.href = '/dashboard';
             }
@@ -91,15 +91,15 @@ function Login()
         console.log(registerUsername);
         try
         {    
-
             setMessage('Registering...');
             const response = await fetch(BASE_URL + 'users/addUser',
                 {method:'POST',body:js,headers:{'Content-Type': 'application/json'}});
 
             var res = JSON.parse(await response.text());
 
-            if (res == null) {
-                setMessage('Registration failed');
+            if (res != null && res.error != null && res.error !== "") {
+                setMessage('Registration failed: Server error');
+                console.log(res.error);
             } else {
                 setMessage('Registered successfully');
                 // setup cookies
@@ -107,13 +107,15 @@ function Login()
                 Cookie.saveCookie("username", document.getElementById("registerUser").value);
                 Cookie.saveCookie("password", Hasher(document.getElementById("registerPassword").value));
                 Cookie.saveCookie("login", "true");
+                Cookie.saveCookie("email", document.getElementById("registerEmail").value);
+                Cookie.saveCookie("name", document.getElementById("registerName").value);
                 // redirect
                 window.location.href = '/dashboard';
             }
         }
         catch(e)
         {
-            setMessage("Registration failed");
+            setMessage("Registration failed: Cached");
             // alert(e.toString());
             return;
         } 
@@ -140,11 +142,11 @@ function Login()
             </div>
             <div id="registerDiv">
                 <span id="loginResult">{message}</span><br />
-                <input type="text" className="form-control" placeholder="Name" ref={(c) => registerName = c} /><br />
+                <input type="text" className="form-control" id="registerName" placeholder="Name" ref={(c) => registerName = c} /><br />
                 <input type="text" className="form-control" id="registerUser" placeholder="Username" ref={(c) => registerUsername = c} /><br />
                 <input type="password" className="form-control" id="registerPassword" placeholder="Password" ref={(c) => registerPassword = c} /><br />
                 <input type="password" className="form-control" placeholder="Confirm Password" ref={(c) => registerPasswordConfirm = c} /><br />
-                <input type="email" className="form-control" placeholder="Email" ref={(c) => registerEmail = c} /><br />
+                <input type="email" className="form-control" id="registerEmail" placeholder="Email" ref={(c) => registerEmail = c} /><br />
                 <div className="button-gradient top-div">
                     <input type="button" id="loginButton" className="btn btn-light" value="Login" onClick={setLogin} />                
                 </div>
