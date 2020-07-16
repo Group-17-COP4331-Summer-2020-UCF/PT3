@@ -15,24 +15,24 @@ function Customizer() {
             <h1>
                 Select Sex/Age groups!
             </h1>
-			<Row id="dropDown">
+	    <Row id="dropDown">
                 <div class="dropdown">
-					<button onclick="ageDrop()" class="dropbtn">Dropdown</button>
-					<div id="ageDropdown" class="dropdown-content">
-						<a href="#17-21">17-21</a>
-						<a href="#22-26">22-26</a>
-						<a href="#27-31">27-31</a>
-						<a href="#32-36">32-36</a>
-						<a href="#37-41">37-41</a>
-					</div>
-				</div>
+			<button onclick="ageDrop()" class="dropbtn">Dropdown</button>
+			<div id="ageDropdown" class="dropdown-content">
+				<a href="#17-21">17-21</a>
+				<a href="#22-26">22-26</a>
+				<a href="#27-31">27-31</a>
+				<a href="#32-36">32-36</a>
+				<a href="#37-41">37-41</a>
+			</div>
+		</div>
                 <div class="dropdown">
-					<button onclick="sexDrop()" class="dropbtn">Dropdown</button>
-					<div id="sexDropdown" class="dropdown-content">
-						<a href="#male">Male</a>
-						<a href="#female">Female</a>
-					</div>
-				</div>
+			<button onclick="sexDrop()" class="dropbtn">Dropdown</button>
+			<div id="sexDropdown" class="dropdown-content">
+				<a href="#male">Male</a>
+				<a href="#female">Female</a>
+			</div>
+		</div>
             </Row>
             <div className="button-gradient">
                 <input type="button" id="groupButton" className="btn btn-light" value="Submit" onClick={doChange} />
