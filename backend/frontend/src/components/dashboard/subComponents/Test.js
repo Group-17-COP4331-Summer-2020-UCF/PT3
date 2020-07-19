@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import '../../../css/dashboard/subComponents/Test.css';
 import React, {Component} from 'react';
-import { Row , Button } from 'react-bootstrap'
+import { Row , Button, Col } from 'react-bootstrap'
 import Cookie from '../../general/Cookie'
 
 const BASE_URL = 'https://large-project-2020.herokuapp.com/';
@@ -16,6 +16,9 @@ airforce
 saved on a cookie called: test.
 the age will be saved on cookie called: age.
 */
+
+// NOTE setting cookies for testing purposes
+console.log("cookies getting set automatically for testing")
 
 Cookie.saveCookie("test", "airforce");
 Cookie.saveCookie("age", "21");
@@ -294,11 +297,13 @@ class Test extends React.Component {
         return (
             <Row id="test-wrapper" fluid>
                 <div id="test-div">
+                    <br />
                     <h1 id="test-header"> {result} </h1>
                     <h4 id="age-header"> {age} </h4>
                     {CurrentComponent}
+                    <br />
                     <div>
-                        <h2>{"Start run: " + Math.round(this.state.curTime / 4) + " s"}</h2>
+                        <h2>{"Start run: " + getTime(this.state.curTime / 4)}</h2>
                     </div>
                     {/* Control Buttons */}
                     <div>
@@ -306,6 +311,7 @@ class Test extends React.Component {
                         <Button variant="outline-danger" onClick={() => this.stop()}>Stop</Button>{' '}
                         <Button variant="outline-info" onClick={() => this.submit()}>Submit</Button>{' '}
                     </div>
+                    <br />
                     <h5 id="responce">
 
                     </h5>
@@ -318,9 +324,19 @@ class Test extends React.Component {
 function RunField() {
     return (
         <>
-            <Row>
-                <input type="email" className="subform-control" id="minutes" placeholder="Minutes" /><br />
-                <input type="email" className="subform-control" id="seconds" placeholder="Seconds" /><br />
+            <Row id="time-wrapper">
+                <Col>
+                    <h6>
+                        Minutes 
+                    </h6>
+                    <input type="email" className="form-control" id="minutes" placeholder="Minutes" />
+                </Col>
+                <Col>
+                    <h6>
+                        Seconds
+                    </h6>
+                    <input type="email" className="form-control" id="seconds" placeholder="Seconds" />
+                </Col>
             </Row>
         </>
     )
@@ -329,7 +345,13 @@ function RunField() {
 function ArmyComponent() {
     return (
         <>
+            <h6>
+                Push-Ups
+            </h6>
             <input type="email" className="form-control" id="pushups" placeholder="Push-ups" /><br />
+            <h6>
+                Sit-ups
+            </h6>
             <input type="email" className="form-control" id="situps" placeholder="Sit-ups" /><br />
             {RunField()}
         </>
@@ -339,8 +361,13 @@ function ArmyComponent() {
 function NavyComponent() {
     return (
         <>
+            <h6>
+                Push-Ups
+            </h6>            
             <input type="email" className="form-control" id="pushups" placeholder="Push-ups" /><br />
-            <input type="email" className="form-control" id="situps" placeholder="Curl-ups" /><br />
+            <h6>
+                Sit-ups
+            </h6>            <input type="email" className="form-control" id="situps" placeholder="Curl-ups" /><br />
             {RunField()}
         </>    
     );
@@ -349,7 +376,13 @@ function NavyComponent() {
 function MarineComponent() {
     return (
         <>
+            <h6>
+                Pull-ups
+            </h6>
             <input type="email" className="form-control" id="pullups" placeholder="Pull-ups" /><br />
+            <h6>
+                Crunches
+            </h6>
             <input type="email" className="form-control" id="crunches" placeholder="Crunches" /><br />
             {RunField()}
         </>
@@ -376,6 +409,13 @@ function toSeconds(str) {
     }
     console.log(result);
     return result;
+}
+
+function getTime(seconds) {
+    seconds = Math.round(seconds);
+    var minutes = seconds / 60;
+    var seconds = seconds % 60;
+    return Math.round(minutes) + " min " + Math.round(seconds) + " sec";
 }
 
 export default Test
