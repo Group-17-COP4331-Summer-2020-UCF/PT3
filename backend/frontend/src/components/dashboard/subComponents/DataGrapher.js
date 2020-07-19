@@ -12,38 +12,6 @@ function DataGrapher() {
             <h1>
                 Data Grapher!
             </h1>
-            <p1>
-                <!DOCTYPE HTML>
-                <html>
-                <head>
-                <script>
-                window.onload = function() {
-
-                var chart = new CanvasJS.Chart("chartContainer", {
-	                animationEnabled: true,
-                    title: {
-			            text: "Pass Percentage"
-		            },
-	                data: [{
-		                type: "pie",
-		                indexLabel: "{label} #percent%",
-                        percentFormatString: "#0.##",
-		                dataPoints: [
-			                {y: 4, label: "Pass", color: "green"},
-			                {y: 1, label: "Fail", color: "red"},
-		                ]
-	                }]
-                });
-                chart.render();
-
-                }
-                </script>
-                </head>
-                <body>
-                <div id="chartContainer" style="height: 370px; width: 100%;"></div>
-                </body>
-                </html>
-            </p1>
 
         </Row>
     );
