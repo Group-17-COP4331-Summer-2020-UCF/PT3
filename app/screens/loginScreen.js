@@ -41,7 +41,7 @@ export const LoginScreen = ({ navigation }) => {
       body: js,
       headers: { "Content-Type": "application/json" },
     })
-      .then((response) => {
+      .then((response) =>
         /*
         if (
           response.statusText == "OK" &&
@@ -53,11 +53,9 @@ export const LoginScreen = ({ navigation }) => {
           throw new Error("Server can't be reached!");
         }
         */
-       if (!response.ok)
-       {
-         console.log.("SHIT HIT FAN!");
-       }
-      })
+        response.json()
+      )
+
       .then((responseJSON) => {
         setLoading(false);
         console.log(responseJSON);

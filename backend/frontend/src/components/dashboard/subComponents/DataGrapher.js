@@ -12,9 +12,6 @@ function DataGrapher() {
             <h1>
                 Data Grapher!
             </h1>
-            <p1>
-                here we graph data! past tests of the user with pass and fail rates.
-            </p1>
 
         </Row>
     );
