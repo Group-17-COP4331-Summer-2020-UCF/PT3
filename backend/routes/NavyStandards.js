@@ -2,7 +2,32 @@ const router = require('express').Router();
 let NavyStandard = require('../models/NavyStandard.model');
 
 router.route('/searchNavyStandard').post((req, res) => {
-    var query = { sex: req.body.sex, age: req.body.age};
+    var ageGroup = null;
+    if(req.body.age <= 19)
+    {
+        ageGroup = "17-19";
+    }
+    else if (req.body.age >= 20 && req.body.age <= 24)
+    {
+        ageGroup = "20-24";
+    }
+    else if (req.body.age >= 25 && req.body.age <= 29)
+    {
+        ageGroup = "25-29";
+    }
+    else if (req.body.age >= 30 && req.body.age <= 34)
+    {
+        ageGroup = "30-34";
+    }
+    else if (req.body.age >= 35)
+    {
+        ageGroup = "35-39";
+    }
+    else
+    {   
+        ageGroup = "null";
+    }
+    var query = { sex: req.body.sex, age: ageGroup};
     NavyStandard.findOne(query)
     .then(NavyStandards => res.json(NavyStandards))
     .catch(err => res.status(400).json('Error: ' + err));

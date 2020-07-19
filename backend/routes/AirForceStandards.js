@@ -3,11 +3,11 @@ let AirForceStandard = require('../models/AirForceStandard.model');
 
 router.route('/searchAirForceStandard').post((req, res) => {
     var ageGroup = null;
-    if(req.body.age >= 17 && req.body.age <= 29)
+    if(req.body.age <= 29)
     {
         ageGroup = "17-29";
     }
-    else if (req.body.age >= 30 && req.body.age <= 39)
+    else if (req.body.age >= 30)
     {
         ageGroup = "30-39";
     }
