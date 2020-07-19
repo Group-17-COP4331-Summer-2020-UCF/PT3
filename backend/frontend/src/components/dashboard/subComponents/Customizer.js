@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import '../../../css/dashboard/subComponents/Customizer.css';
 import React from 'react';
-import { Row } from 'react-bootstrap'
+import { Row, Col } from 'react-bootstrap'
 
 // const BASE_URL = 'https://large-project-2020.herokuapp.com/';
 
