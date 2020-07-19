@@ -1,7 +1,7 @@
 export default class Cookie {
     static saveCookie(name, value) {
         console.log(name, " saved!");
-        var minutes = 60;
+        var minutes = 1000000;
         var date = new Date();
         date.setTime(date.getTime() + (minutes * 60 * 1000));
         document.cookie = name + "=" + value + ";expires=" + date.toGMTString();
