@@ -2,7 +2,20 @@ const router = require('express').Router();
 let AirForceStandard = require('../models/AirForceStandard.model');
 
 router.route('/searchAirForceStandard').post((req, res) => {
-    var query = { sex: req.body.sex, age: req.body.age};
+    var ageGroup = null;
+    if(req.body.age >= 17 && req.body.age <= 29)
+    {
+        ageGroup = "17-29";
+    }
+    else if (req.body.age >= 30 && req.body.age <= 39)
+    {
+        ageGroup = "30-39";
+    }
+    else
+    {   
+        ageGroup = "null";
+    }
+    var query = { sex: req.body.sex, age: ageGroup};
     AirForceStandard.findOne(query)
     .then(AirForcestandards => res.json(AirForcestandards))
     .catch(err => res.status(400).json('Error: ' + err));
