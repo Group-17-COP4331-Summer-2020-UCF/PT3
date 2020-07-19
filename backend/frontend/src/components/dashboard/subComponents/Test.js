@@ -415,7 +415,7 @@ function getTime(seconds) {
     seconds = Math.round(seconds);
     var minutes = seconds / 60;
     var seconds = seconds % 60;
-    return Math.round(minutes) + " min " + Math.round(seconds) + " sec";
+    return Math.floor(minutes) + " min " + Math.round(seconds) + " sec";
 }
 
 export default Test
