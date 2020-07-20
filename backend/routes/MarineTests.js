@@ -28,7 +28,7 @@ router.route('/addMarineTest').post((req, res) => {
     });
 
     newMarineTest.save()
-    .then(() => res.json('Army Test added!'))
+    .then(() => res.json('Marine Test added!'))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
