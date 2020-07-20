@@ -1,57 +1,39 @@
 #customizer-wrapper {
     background-color: white;
-    height: 300px;
+    height: 290px;
+    width: 595px;
     margin-left: 5%;
     margin-right: 2.5%;
     margin-bottom: 5%;
 }
 
 #groupButton {
-  background: rgb(0,130,108);
-  background: linear-gradient(90deg, rgba(0,130,108,1) 0%, rgba(78,68,124,1) 100%);
-  font-weight: bold;
-  color: white;  
-  width: 95%;
-  margin-bottom: 4px;
-  margin-top: 4px;
-  border-color: transparent;
-}
-
-.dropbtn {
-  background-color: #3498DB;
-  color: white;
-  padding: 16px;
-  font-size: 16px;
+  background-color: #307bf3; 
   border: none;
-  cursor: pointer;
-}
-
-.dropbtn:hover, .dropbtn:focus {
-  background-color: #2980B9;
-}
-
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f1f1f1;
-  min-width: 160px;
-  overflow: auto;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-}
-
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
   text-decoration: none;
-  display: block;
+  display: inline-block;
+  font-size: 16px;
+  margin-top: 20px;
+  margin-left: 8px;
 }
 
-.dropdown a:hover {background-color: #ddd;}
+#ageInput{
+  margin-top: 20px;
+  margin-right: 8px;
+  margin-left: 8px;
+}
 
-.show {display: block;}
+#ageButton {
+  background-color: #307bf3; 
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-top: 20px;
+  margin-left: 20px;
+}
