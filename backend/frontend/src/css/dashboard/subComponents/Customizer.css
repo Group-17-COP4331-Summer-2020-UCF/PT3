@@ -27,7 +27,7 @@
 
 #ageInput{
   margin:5%;
-  width: 60%;
+  width: 100%;
 }
 
 #ageButton {
@@ -37,10 +37,15 @@
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  margin-top: 5%;
-  margin-bottom: 5%;
-  padding-left: 7%;
-  padding-right: 7%;
+  margin: auto;
+  padding: 5%;
+  padding-left: 12%;
+  padding-right: 12%;
+  min-width: 15%;
+}
+
+#button-wrapper {
+  margin: auto;
 }
 
 #age-wrapper {

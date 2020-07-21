@@ -58,8 +58,12 @@ function Customizer() {
               </Col>
             </Row>
             <Row id="age-wrapper">
+              <Col lg={8}>
               <input type="email" className="form-control" id="ageInput" placeholder="Enter age" />
+              </Col>
+              <Col id="button-wrapper">
               <input type="button" id="ageButton" className="btn btn-light" value="Set age" onClick={setAge} />
+              </Col>
           </Row>
           </Container>
           <br />
