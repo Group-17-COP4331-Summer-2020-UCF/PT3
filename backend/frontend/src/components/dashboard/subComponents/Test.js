@@ -360,7 +360,7 @@ function NavyComponent() {
             <input type="email" className="form-control" id="pushups" placeholder="Push-ups" /><br />
             <h6>
                 Curl-ups
-            </h6>            <input type="email" className="form-control" id="situps" placeholder="Curl-ups" /><br />
+            </h6>            <input type="email" className="form-control" id="curlups" placeholder="Curl-ups" /><br />
             {RunField()}
         </>    
     );
