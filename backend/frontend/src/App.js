@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-d
 import LoginPage from './pages/LoginPage';
 import AboutPage from './pages/AboutPage'
 import DashboardPage from './pages/DashboardPage';
+import HelpPage from './pages/HelpPage';
 
 function App() {
   return (
@@ -18,8 +19,12 @@ function App() {
             </Route>
             <Route path="/dashboard" exact>
               <DashboardPage />
-            </Route><Route path="/about" exact>
+            </Route>
+            <Route path="/about" exact>
               <AboutPage />
+            </Route>
+            <Route path="/help" exact>
+              <HelpPage />
             </Route>
               <Redirect to="/" />
           </Switch>  
