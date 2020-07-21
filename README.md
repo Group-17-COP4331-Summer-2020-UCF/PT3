@@ -21,3 +21,6 @@ $ npm install -g npm-install-missing # Installs missing modules.
 $ npm install react-scripts # Install react-scripts package.
 $ npm start # Start development server.
 ```
+
+Link to swaggerhub for API Documentation
+https://app.swaggerhub.com/apis/COP4331Group17-2020/PT3API/1.0.0

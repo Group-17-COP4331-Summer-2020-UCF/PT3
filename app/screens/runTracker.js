@@ -17,10 +17,15 @@ import MapView, {
   AnimatedRegion,
   Callout,
 } from "react-native-maps";
+import { withNavigation } from "react-navigation";
 
 import * as Permissions from "expo-permissions";
 import * as Location from "expo-location";
+import { styles } from "../styles/styles.js";
 import FancyButton from "../components/fancyButton";
+import haversine from "haversine";
+import { LinearGradient } from "expo-linear-gradient";
+import CountDown from "react-native-countdown-component";
 
 const LATITUDE_DELTA = 0.009;
 const LONGITUDE_DELTA = 0.009;
@@ -34,8 +39,14 @@ export class RunTracker extends React.Component {
       latitude: LATITUDE,
       longitude: LONGITUDE,
       routeCoordinates: [],
-      distanceTraveled: 0,
-      valueprevLatLng: {},
+      distanceTravelled: 0,
+      prevLatLng: {},
+      coordinate: new AnimatedRegion({
+        latitude: LATITUDE,
+        longitude: LONGITUDE,
+        latitudeDelta: 0,
+        longitudeDelta: 0,
+      }),
 
       error: null,
     };
@@ -43,38 +54,8 @@ export class RunTracker extends React.Component {
 
   /*
   componentDidMount() {
-    this._getLocation();
-  }
-  // get permissions from user
-  _getLocation = async () => {
-    const { status } = await Permissions.getAsync(Permissions.LOCATION);
-
-    if (status != "granted") {
-      console.log("Permission not granted");
-    }
-
-    this.setState({
-      errorMessage: "You dun messed up",
-    });
-
-    const location = await Location.getCurrentPositionAsync();
-
-    this.setState({
-      location,
-    });
-  };
-
-
-              {JSON.stringify(this.state.location.coords)}
-
-
-              
-*/
-
-  componentDidMount() {
     navigator.geolocation.getCurrentPosition(
       (position) => {
-        console.log(position);
         this.setState({
           latitude: position.coords.latitude,
           longitude: position.coords.longitude,
@@ -84,11 +65,16 @@ export class RunTracker extends React.Component {
       (error) => this.setState({ error: error.message }),
       { enableHighAccuracy: true, timeout: 200000, maximumAge: 1000 }
     );
+    const { coordinate } = this.state;
 
-    navigator.geolocation.watchPosition((position) => {
+    this.watchID = navigator.geolocation.watchPosition((position) => {
+      const { routeCoordinates, distanceTravelled } = this.state;
       const { latitude, longitude } = position.coords;
-      const { routeCoordinates } = this.state;
       const newCoordinate = { latitude, longitude };
+      console.log({ newCoordinate });
+
+      this.marker._component.animateMarkerToCoordinate(newCoordinate, 500);
+
       this.setState({
         latitude,
         longitude,
@@ -96,7 +82,61 @@ export class RunTracker extends React.Component {
         distanceTravelled: distanceTravelled + this.calcDistance(newCoordinate),
         prevLatLng: newCoordinate,
       });
+      (error) => console.log(error),
+        {
+          enableHighAccuracy: true,
+          timeout: 20000,
+          maximumAge: 1000,
+          distanceFilter: 10,
+        };
     });
+  }
+
+  */
+
+  componentDidMount() {
+    // this.requestCameraPermission();
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        this.setState({
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+          error: null,
+        });
+      },
+      (error) => this.setState({ error: error.message }),
+      { enableHighAccuracy: false, timeout: 200000, maximumAge: 1000 }
+    );
+    const { coordinate } = this.state;
+
+    this.watchID = navigator.geolocation.watchPosition(
+      (position) => {
+        const { routeCoordinates, distanceTravelled } = this.state;
+        const { latitude, longitude } = position.coords;
+
+        const newCoordinate = {
+          latitude,
+          longitude,
+        };
+        console.log({ newCoordinate });
+
+        this.setState({
+          latitude,
+          longitude,
+          routeCoordinates: routeCoordinates.concat([newCoordinate]),
+          distanceTravelled:
+            distanceTravelled + this.calcDistance(newCoordinate),
+          prevLatLng: newCoordinate,
+        });
+      },
+      (error) => console.log(error),
+      {
+        enableHighAccuracy: true,
+        timeout: 20000,
+        maximumAge: 1000,
+        distanceFilter: 10,
+      }
+    );
   }
 
   // Track moving position
@@ -115,6 +155,9 @@ export class RunTracker extends React.Component {
     );
   }
 */
+  componentWillUnmount() {
+    navigator.geolocation.clearWatch(this.watchID);
+  }
 
   getMapRegion = () => ({
     latitude: this.state.latitude,
@@ -125,33 +168,112 @@ export class RunTracker extends React.Component {
 
   calcDistance = (newLatLng) => {
     const { prevLatLng } = this.state;
-    return haversine(prevLatLng, newLatLng) || 0;
+    console.log(haversine(prevLatLng, newLatLng));
+    return haversine(prevLatLng, newLatLng) / 1.6 || 0;
   };
 
   render() {
+    if (this.state.distanceTravelled >= 1.5) {
+      return (
+        <LinearGradient colors={["#20E9A9", "#5762D5"]} style={styles.screen}>
+          <View style={{}}>
+            <Text
+              style={{
+                fontSize: 50,
+                fontWeight: "bold",
+                fontFamily: "monospace",
+                paddingLeft: 75,
+              }}
+            >
+              Testing Complete
+            </Text>
+            <Text
+              style={{ fontSize: 20, fontStyle: "italic", paddingLeft: 70 }}
+            >
+              Your scores have been saved
+            </Text>
+            <View
+              style={{ paddingLeft: 120, paddingTop: 80, paddingBottom: 80 }}
+            >
+              <Image
+                style={{
+                  width: 180,
+                  height: 200,
+                  //paddingHorizontal: 100,
+                }}
+                source={require("../img/check2.png")}
+              />
+            </View>
+
+            <FancyButton
+              text="Go Back Home"
+              onPress={() => {
+                this.props.navigation.navigate("Main");
+              }}
+            />
+          </View>
+        </LinearGradient>
+      );
+    }
     return (
-      <View style={styles.container}>
+      <View style={more_styles.container}>
         <MapView
           provider={PROVIDER_GOOGLE}
-          style={styles.map}
+          showsUserLocation
+          followsUserLocation
+          loadingEnabled
+          style={more_styles.map}
           region={this.getMapRegion()}
         >
           <Polyline coordinates={this.state.routeCoordinates} strokeWidth={5} />
-          <Marker coordinate={this.getMapRegion()}></Marker>
+          <Marker.Animated
+            ref={(marker) => {
+              this.marker = marker;
+            }}
+            coordinate={this.state.coordinate}
+          />
         </MapView>
 
-        <View style={{ height: 200, backgroundColor: "black", width: "100%" }}>
-          <FancyButton text="End Run" />
-          <Text style={{ color: "white", fontSize: 30 }}>
-            {this.state.latitude}
+        <View
+          style={{
+            height: 150,
+            backgroundColor: "beige",
+            width: "100%",
+            flexDirection: "row",
+          }}
+        >
+          <Text
+            style={{
+              color: "black",
+              fontSize: 35,
+              fontWeight: "bold",
+              fontFamily: "monospace",
+              paddingTop: 40,
+            }}
+          >
+            {parseFloat(this.state.distanceTravelled).toFixed(2)} mi
           </Text>
+          <CountDown
+            until={120}
+            size={40}
+            digitStyle={{ backgroundColor: "#5762D5" }}
+            digitTxtStyle={{ color: "#20E9A9" }}
+            timeToShow={["M", "S"]}
+            timeLabels={{ m: "min", s: "sec" }}
+          />
         </View>
+        <FancyButton
+          text="End Run"
+          onPress={() => {
+            this.props.navigation.navigate("Fail");
+          }}
+        />
       </View>
     );
   }
 }
 
-const styles = StyleSheet.create({
+const more_styles = StyleSheet.create({
   container: {
     position: "absolute",
     top: 0,
@@ -169,3 +291,5 @@ const styles = StyleSheet.create({
     bottom: 0,
   },
 });
+
+//export default withNavigation(RunTracker);

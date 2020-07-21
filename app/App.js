@@ -16,6 +16,9 @@ import { MarineScreen } from "./screens/marineScreen.js";
 import { NavyScreen } from "./screens/navyScreen.js";
 import { SettingsScreen } from "./screens/settingsScreen.js";
 import { RunTracker } from "./screens/runTracker.js";
+import { Success } from "./screens/success.js";
+import { Fail } from "./screens/fail.js";
+
 // Imports ----------------------------------------------------------------------------------------------
 
 const Stack = createStackNavigator();
@@ -35,6 +38,8 @@ export default function App() {
         <Stack.Screen name="Marines" component={MarineScreen} />
         <Stack.Screen name="Navy" component={NavyScreen} />
         <Stack.Screen name="Map" component={RunTracker} />
+        <Stack.Screen name="Success" component={Success} />
+        <Stack.Screen name="Fail" component={Fail} />
       </Stack.Navigator>
     </NavigationContainer>
   );
