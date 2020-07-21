@@ -1,57 +1,71 @@
 #customizer-wrapper {
-    background-color: white;
-    height: 300px;
-    margin-left: 5%;
-    margin-right: 2.5%;
-    margin-bottom: 5%;
+  background-color: white;
+  margin-top: 2.5%;
+  margin-right: 2.5%;
+  margin-left: 5%;
+  margin-bottom: 5%;
 }
 
-#groupButton {
-  background: rgb(0,130,108);
-  background: linear-gradient(90deg, rgba(0,130,108,1) 0%, rgba(78,68,124,1) 100%);
-  font-weight: bold;
-  color: white;  
-  width: 95%;
-  margin-bottom: 4px;
-  margin-top: 4px;
-  border-color: transparent;
+#customizer-div {
+  padding: 0%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
 }
 
-.dropbtn {
-  background-color: #3498DB;
-  color: white;
-  padding: 16px;
-  font-size: 16px;
+.groupButton {
+  /* background-color: #307bf3;  */
   border: none;
-  cursor: pointer;
+  color: white;
+  margin: 1%;
+  font-size: 120%;
+} 
+
+#customizer-header {
+  margin:1%;
 }
 
-.dropbtn:hover, .dropbtn:focus {
-  background-color: #2980B9;
+#ageInput{
+  margin:5%;
+  width: 100%;
 }
 
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f1f1f1;
-  min-width: 160px;
-  overflow: auto;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-}
-
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
+#ageButton {
+  background-color: #17a2b8; 
+  border: none;
+  color: white;
+  text-align: center;
   text-decoration: none;
-  display: block;
+  display: inline-block;
+  margin: auto;
+  padding: 5%;
+  padding-left: 12%;
+  padding-right: 12%;
+  min-width: 15%;
 }
 
-.dropdown a:hover {background-color: #ddd;}
+#button-wrapper {
+  margin: auto;
+}
 
-.show {display: block;}
+#age-wrapper {
+  padding: 0%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#maleButton {
+  background-color:#0092fa;
+  border: none;
+  color: white;
+  margin: 2%;
+  font-size: 140%;
+}
+
+#femaleButton {
+  background-color: rgb(255, 90, 118);
+  border: none;
+  color: white;
+  margin: 2%;
+  font-size: 140%;
+}

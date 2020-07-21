@@ -21,6 +21,7 @@ import MapView, {
 import * as Permissions from "expo-permissions";
 import * as Location from "expo-location";
 import FancyButton from "../components/fancyButton";
+import haversine from "haversine";
 
 const LATITUDE_DELTA = 0.009;
 const LONGITUDE_DELTA = 0.009;
@@ -34,42 +35,20 @@ export class RunTracker extends React.Component {
       latitude: LATITUDE,
       longitude: LONGITUDE,
       routeCoordinates: [],
-      distanceTraveled: 0,
+      distanceTravelled: 0,
       valueprevLatLng: {},
+      coordinate: new AnimatedRegion({
+        latitude: LATITUDE,
+        longitude: LONGITUDE,
+        latitudeDelta: 0,
+        longitudeDelta: 0,
+      }),
 
       error: null,
     };
   }
 
   /*
-  componentDidMount() {
-    this._getLocation();
-  }
-  // get permissions from user
-  _getLocation = async () => {
-    const { status } = await Permissions.getAsync(Permissions.LOCATION);
-
-    if (status != "granted") {
-      console.log("Permission not granted");
-    }
-
-    this.setState({
-      errorMessage: "You dun messed up",
-    });
-
-    const location = await Location.getCurrentPositionAsync();
-
-    this.setState({
-      location,
-    });
-  };
-
-
-              {JSON.stringify(this.state.location.coords)}
-
-
-              
-*/
 
   componentDidMount() {
     navigator.geolocation.getCurrentPosition(
@@ -96,7 +75,54 @@ export class RunTracker extends React.Component {
         distanceTravelled: distanceTravelled + this.calcDistance(newCoordinate),
         prevLatLng: newCoordinate,
       });
+      (error) => this.setState({ error: error.message }),
+        { enableHighAccuracy: true, timeout: 200000, maximumAge: 1000 };
     });
+  }
+
+  */
+  componentDidMount() {
+    // this.requestCameraPermission();
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        this.setState({
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+          error: null,
+        });
+      },
+      (error) => this.setState({ error: error.message }),
+      { enableHighAccuracy: false, timeout: 200000, maximumAge: 1000 }
+    );
+    const { coordinate } = this.state;
+    this.watchID = navigator.geolocation.watchPosition(
+      (position) => {
+        const { routeCoordinates, distanceTravelled } = this.state;
+        const { latitude, longitude } = position.coords;
+
+        const newCoordinate = {
+          latitude,
+          longitude,
+        };
+        console.log({ newCoordinate });
+
+        this.setState({
+          latitude,
+          longitude,
+          routeCoordinates: routeCoordinates.concat([newCoordinate]),
+          distanceTravelled:
+            distanceTravelled + this.calcDistance(newCoordinate),
+          prevLatLng: newCoordinate,
+        });
+      },
+      (error) => console.log(error),
+      {
+        enableHighAccuracy: true,
+        timeout: 20000,
+        maximumAge: 1000,
+        distanceFilter: 10,
+      }
+    );
   }
 
   // Track moving position
@@ -115,6 +141,9 @@ export class RunTracker extends React.Component {
     );
   }
 */
+  componentWillUnmount() {
+    navigator.geolocation.clearWatch(this.watchID);
+  }
 
   getMapRegion = () => ({
     latitude: this.state.latitude,
@@ -125,6 +154,7 @@ export class RunTracker extends React.Component {
 
   calcDistance = (newLatLng) => {
     const { prevLatLng } = this.state;
+    //console.log(haversine(prevLatLng, newLatLng));
     return haversine(prevLatLng, newLatLng) || 0;
   };
 
@@ -133,17 +163,30 @@ export class RunTracker extends React.Component {
       <View style={styles.container}>
         <MapView
           provider={PROVIDER_GOOGLE}
+          showsUserLocation
+          followsUserLocation
+          loadingEnabled
           style={styles.map}
           region={this.getMapRegion()}
         >
           <Polyline coordinates={this.state.routeCoordinates} strokeWidth={5} />
-          <Marker coordinate={this.getMapRegion()}></Marker>
+          <Marker.Animated
+            ref={(marker) => {
+              this.marker = marker;
+            }}
+            coordinate={this.getMapRegion()}
+          />
         </MapView>
 
         <View style={{ height: 200, backgroundColor: "black", width: "100%" }}>
           <FancyButton text="End Run" />
-          <Text style={{ color: "white", fontSize: 30 }}>
-            {this.state.latitude}
+          <Text
+            style={{
+              color: "white",
+              fontSize: 30,
+            }}
+          >
+            {this.state.distanceTravelled} km
           </Text>
         </View>
       </View>

@@ -13,8 +13,6 @@ import Cookie from "./helpers/Cookie.js";
 
 export const LoginScreen = ({ navigation }) => {
   const baseURL = "https://large-project-2020.herokuapp.com/";
-  const ip = "https://10.0.2.2:5000/";
-  const myip = "https://10.0.0.46:5000/";
 
   let [userCred, setUserCred] = useState("");
   let [userPassword, setUserPassword] = useState("");
