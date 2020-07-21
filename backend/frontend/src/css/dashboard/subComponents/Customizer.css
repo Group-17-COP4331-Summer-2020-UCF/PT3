@@ -1,39 +1,66 @@
 #customizer-wrapper {
-    background-color: white;
-    height: 290px;
-    width: 595px;
-    margin-left: 5%;
-    margin-right: 2.5%;
-    margin-bottom: 5%;
+  background-color: white;
+  margin-top: 2.5%;
+  margin-right: 2.5%;
+  margin-left: 5%;
+  margin-bottom: 5%;
 }
 
-#groupButton {
-  background-color: #307bf3; 
+#customizer-div {
+  padding: 0%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+.groupButton {
+  /* background-color: #307bf3;  */
   border: none;
   color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin-top: 20px;
-  margin-left: 8px;
+  margin: 1%;
+  font-size: 120%;
+} 
+
+#customizer-header {
+  margin:1%;
 }
 
 #ageInput{
-  margin-top: 20px;
-  margin-right: 8px;
-  margin-left: 8px;
+  margin:5%;
+  width: 60%;
 }
 
 #ageButton {
-  background-color: #307bf3; 
+  background-color: #17a2b8; 
   border: none;
   color: white;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
-  margin-top: 20px;
-  margin-left: 20px;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  padding-left: 7%;
+  padding-right: 7%;
+}
+
+#age-wrapper {
+  padding: 0%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#maleButton {
+  background-color:#0092fa;
+  border: none;
+  color: white;
+  margin: 2%;
+  font-size: 140%;
+}
+
+#femaleButton {
+  background-color: rgb(255, 90, 118);
+  border: none;
+  color: white;
+  margin: 2%;
+  font-size: 140%;
 }
