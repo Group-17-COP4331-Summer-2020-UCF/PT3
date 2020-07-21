@@ -18,18 +18,17 @@ the age will be saved on cookie called: age.
 */
 
 // NOTE setting cookies for testing purposes
-console.log("cookies getting set automatically for testing")
+// console.log("cookies getting set automatically for testing")
 
-Cookie.saveCookie("test", "airforce");
-Cookie.saveCookie("age", "21");
-Cookie.saveCookie("sex", "male")
+// Cookie.saveCookie("test", "marine");
+// Cookie.saveCookie("age", "21");
+// Cookie.saveCookie("sex", "male")
 
 var start = false;
 var seconds = 0;
 var validStart = true;
 
 var selection = Cookie.getCookie("test");
-var lastSelection = null;
 
 class Test extends React.Component {
     constructor() {
@@ -252,6 +251,7 @@ class Test extends React.Component {
     render() {
         // /AirForceTests/addAirForceTest
         // check if we are logged in
+        selection = Cookie.getCookie("test")
         if (Cookie.getCookie("login") !== "true") {
             window.location.href = '/';
         }
@@ -263,13 +263,6 @@ class Test extends React.Component {
             age = "Age selected: " + age;
         }
 
-        lastSelection = selection;
-        selection = Cookie.getCookie("test");
-
-        if (lastSelection !== selection) {
-            // Reset the container.
-            Cookie.saveCookie("test", "");
-        }
         validStart = true;
         var CurrentComponent = ""
         switch (selection) {
@@ -366,7 +359,7 @@ function NavyComponent() {
             </h6>            
             <input type="email" className="form-control" id="pushups" placeholder="Push-ups" /><br />
             <h6>
-                Sit-ups
+                Curl-ups
             </h6>            <input type="email" className="form-control" id="situps" placeholder="Curl-ups" /><br />
             {RunField()}
         </>    
