@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
 
   container: {
     backgroundColor: "#333745",
-    height: 730,
+    height: 750,
     width: "90%",
     alignContent: "center",
     borderRadius: 30,
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     height: 110,
     width: 265,
     paddingTop: 8,
-    paddingLeft: 85,
+    paddingLeft: 105,
     justifyContent: "space-between",
     alignItems: "center",
   },
@@ -36,6 +36,8 @@ const styles = StyleSheet.create({
   inputTextBox: {
     width: 300,
     height: 45,
+    alignContent: "center",
+    justifyContent: "center",
     backgroundColor: "#FFFFFF",
     borderRadius: 8,
   },
@@ -55,7 +57,7 @@ const styles = StyleSheet.create({
   font: {
     fontSize: 120,
     paddingLeft: 65,
-    paddingBottom: 100,
+    paddingBottom: 80,
     fontWeight: "bold",
     color: "#43373F",
   },

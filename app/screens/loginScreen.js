@@ -132,16 +132,16 @@ export const LoginScreen = ({ navigation }) => {
         <Text style={styles.font}>PT3</Text>
         <Text
           style={{
-            fontSize: 25,
+            fontSize: 20,
             justifyContent: "center",
             paddingLeft: 45,
             paddingBottom: 30,
+            fontFamily: "monospace",
 
             //position: "relative",
           }}
         >
-          {" "}
-          Test, Train and maybe Track
+          Test, Train and Track
         </Text>
 
         <View style={styles.input}>
