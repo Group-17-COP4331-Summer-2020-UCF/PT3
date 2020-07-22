@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Text, View, TextInput, TouchableOpacity } from "react-native";
+import "localstorage-polyfill";
 
 import { LinearGradient } from "expo-linear-gradient";
 import { styles } from "../styles/styles.js";
@@ -8,16 +9,18 @@ import { StatusBar } from "react-native";
 import FancyButton from "../components/fancyButton.js";
 
 import Hasher from "./helpers/Hasher.js";
+import Cookie from "./helpers/Cookie.js";
 
 export const LoginScreen = ({ navigation }) => {
-  const baseURL = "https://large-project-2020.herokuapp.com";
+  const baseURL = "https://large-project-2020.herokuapp.com/";
 
   let [userCred, setUserCred] = useState("");
   let [userPassword, setUserPassword] = useState("");
   let [loading, setLoading] = useState(false);
   let [errortext, setErrortext] = useState("");
 
-  const handleLoginPress = () => {
+  /*
+  const handleLoginPress1 = () => {
     setErrortext("");
     if (!userCred) {
       alert("Please enter username or email");
@@ -31,37 +34,32 @@ export const LoginScreen = ({ navigation }) => {
 
     var js =
       '{"username":"' +
-      userCred.value +
+      userCred +
       '","password":"' +
-      Hasher(userPassword.value) +
+      Hasher(userPassword) +
       '"}';
 
     fetch(baseURL + "users/loginUser", {
       method: "POST",
       body: js,
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+      },
     })
-      .then((response) =>
-        /*
-        if (
-          response.statusText == "OK" &&
-          response.status >= 200 &&
-          response.status < 300
-        ) {
-          return response.json();
-        } else {
-          throw new Error("Server can't be reached!");
+      .then((response) => {
+        response.json();
+        console.log(JSON.stringify(response.id));
+
+        if (response == null || response.id <= 0) {
+          alert("Incorrect combo");
+          return;
         }
-        */
-        response.json()
-      )
+      })
 
       .then((responseJSON) => {
         setLoading(false);
-        console.log(responseJSON);
-
-        console.log("Something Happened");
-        alert("Success!");
+        console.log(JSON.stringify(responseJSON));
+        console.log("Login Successful");
         return navigation.navigate("Main");
       })
       .catch((error) => {
@@ -69,6 +67,56 @@ export const LoginScreen = ({ navigation }) => {
         console.error(error);
         console.log("Failure :(");
       });
+  };
+  */
+
+  const handleLoginPress2 = async (event) => {
+    event.preventDefault();
+
+    var js =
+      '{"username":"' +
+      userCred +
+      '","password":"' +
+      Hasher(userPassword) +
+      '"}';
+
+    console.log(js);
+
+    try {
+      const response = await fetch(
+        baseURL + "users/loginUser",
+
+        {
+          method: "POST",
+          body: js,
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+
+      var res = JSON.parse(await response.text());
+
+      console.log(JSON.stringify(res));
+      if (res == null || res.id <= 0) {
+        alert("Incorrect Username/Email & Password");
+        return;
+      } else {
+        var user = {
+          firstName: res.firstName,
+          lastName: res.lastName,
+          id: res.id,
+        };
+
+        localStorage.setItem("user_data", JSON.stringify(user));
+
+        // redirect
+        //window.location.href = "/dashboard";
+        return navigation.navigate("Main");
+      }
+    } catch (e) {
+      alert(e.toString());
+      console.log(e);
+      return;
+    }
   };
 
   //Script above me^^^^^^
@@ -113,11 +161,12 @@ export const LoginScreen = ({ navigation }) => {
         </View>
 
         <View style={styles.buttons}>
-          <FancyButton text="Login" onPress={handleLoginPress} />
+          <FancyButton text="Login" onPress={handleLoginPress2} />
           <FancyButton
             text="Create Account"
             onPress={() => navigation.navigate("SignUp")}
           />
+          <FancyButton text="Map" onPress={() => navigation.navigate("Map")} />
         </View>
 
         <View style={styles.forgotButton}>

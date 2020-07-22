@@ -69,7 +69,7 @@ export const SignUpScreen = ({ navigation }) => {
         if (responseJSON == "User added!") {
           setIsRegistraionSuccess(true);
           console.log("Registration Successful. Please Login to proceed");
-          alert("Success!");
+          alert("User Registered");
           return navigation.navigate("Login");
         } else {
           setErrortext("Registration Unsuccessful");

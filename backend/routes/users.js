@@ -1,5 +1,5 @@
-const router = require('express').Router();
-let User = require('../models/user.model');
+const router = require("express").Router();
+let User = require("../models/user.model");
 
 const jwt = require('jsonwebtoken');
 const mailgun = require("mailgun-js");
@@ -13,19 +13,18 @@ router.route('/loginUser').post((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/searchUser').post((req, res) => {
-    var query = { username: req.body.username };
-    User.findOne(query)
-    .then(users => res.json(users))
-    .catch(err => res.status(400).json('Error: ' + err));
-
+router.route("/searchUser").post((req, res) => {
+  var query = { username: req.body.username };
+  User.findOne(query)
+    .then((users) => res.json(users))
+    .catch((err) => res.status(400).json("Error: " + err));
 });
 
-router.route('/addUser').post((req, res) => {
-    const name = req.body.name;
-    const username = req.body.username;
-    const password = req.body.password;
-    const email = req.body.email;
+router.route("/addUser").post((req, res) => {
+  const name = req.body.name;
+  const username = req.body.username;
+  const password = req.body.password;
+  const email = req.body.email;
 
     const token = jwt.sign({name, username, email, password}, process.env.JWT_ACC_ACTIVATE, {expiresIn: '30m'});
 

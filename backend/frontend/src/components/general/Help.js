@@ -25,7 +25,7 @@ function Help()
                 
                 <br />
             </Col>
-            <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+            <br /><br /><br /><br /><br /><br /><br />
         </Container>
     );
 };

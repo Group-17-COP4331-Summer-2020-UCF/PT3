@@ -1,5 +1,6 @@
 import "react-native-gesture-handler";
 import React, { useState } from "react";
+import "localstorage-polyfill";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -14,6 +15,7 @@ import { ArmyScreen } from "./screens/armyScreen.js";
 import { MarineScreen } from "./screens/marineScreen.js";
 import { NavyScreen } from "./screens/navyScreen.js";
 import { SettingsScreen } from "./screens/settingsScreen.js";
+import { RunTracker } from "./screens/runTracker.js";
 // Imports ----------------------------------------------------------------------------------------------
 
 const Stack = createStackNavigator();
@@ -32,6 +34,7 @@ export default function App() {
         <Stack.Screen name="Army" component={ArmyScreen} />
         <Stack.Screen name="Marines" component={MarineScreen} />
         <Stack.Screen name="Navy" component={NavyScreen} />
+        <Stack.Screen name="Map" component={RunTracker} />
       </Stack.Navigator>
     </NavigationContainer>
   );
