@@ -11,7 +11,7 @@ var passCount = 0;
 var failCount = 0;
 const searchTests = async event => {
     var endpoint = null;
-    switch (Cookie.getCookie("username")) {
+    switch (Cookie.getCookie("test")) {
         case "army":
             endpoint = "ArmyTests/searchArmyTest"
             break;
