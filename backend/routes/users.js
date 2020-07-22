@@ -1,10 +1,16 @@
 const router = require("express").Router();
 let User = require("../models/user.model");
+const nodemailer = require('nodemailer');
 
 const jwt = require('jsonwebtoken');
-const mailgun = require("mailgun-js");
-const DOMAIN = 'sandboxce531a1343534f8081145c57c308a34c.mailgun.org';
-const mg = mailgun({apiKey: process.env.MAILGUN_APIKEY, domain: DOMAIN});
+
+let transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: process.env.EMAIL_USERNAME,
+        pass: process.env.EMAIL_PASSWORD
+    }
+})
 
 router.route('/loginUser').post((req, res) => {
     var query = { username: req.body.username, password: req.body.password};
@@ -38,15 +44,28 @@ router.route("/addUser").post((req, res) => {
         `
     };
 
-    mg.messages().send(data, function (error, body) {
+    transporter.sendMail(data)
+    .then(function(response) {
+        return res.json({Message: 'Email has been sent'})
+        console.log(body);
+    })
+    .catch(function(error) {
+        return res.json({
+            error: 'Could not send email'
+        })
+    });
+
+    /*transporter.sendMail(data, function(err, data) {
         if(error){
             return res.json({
                 error: 'Could not send email'
             })
+        } else
+        {
+            return res.json({Message: 'Email has been sent, please activate your account'})
+            console.log(body);
         }
-        return res.json({Message: 'Email has been sent, please activate your account'})
-        console.log(body);
-    }); 
+    });*/
 });
 
 router.route('/verifyUser').post((req, res) => {

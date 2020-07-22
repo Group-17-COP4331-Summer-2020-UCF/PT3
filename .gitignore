@@ -16,4 +16,4 @@ web-build/
 backend/deploy.sh
 node_modules
 
-/backend/.env
+.env
