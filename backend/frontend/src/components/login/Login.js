@@ -4,6 +4,7 @@ import '../../css/login/Login.css';
 import React, { useState } from 'react';
 import Cookie from '../general/Cookie.js'
 import Hasher from './Hasher'
+import { Container, Row, Col } from 'react-bootstrap'
 
 const BASE_URL = 'https://large-project-2020.herokuapp.com/';
 
@@ -17,8 +18,14 @@ function Login()
     var registerPassword;
     var registerPasswordConfirm;
     var registerEmail;
+    var registerCode;
     
     const [message,setMessage] = useState('');
+
+    const validateEmail = async event => {
+        event.preventDefault();
+
+    }
 
     const doLogin = async event => 
     {
@@ -72,9 +79,12 @@ function Login()
         console.log("Attempting to register");
         if (registerPassword.value !== registerPasswordConfirm.value)
         {
-            alert("Passwords do not match!");
+            setMessage("Passwords do not match!");
             console.log('password1: ', registerPassword.value);
             console.log('password2: ', registerPasswordConfirm.value);
+            return;
+        } else if (registerUsername.value === "") {
+            setMessage("Enter a valid username!")
             return;
         }
         event.preventDefault();
@@ -147,6 +157,11 @@ function Login()
                 <input type="password" className="form-control" id="registerPassword" placeholder="Password" ref={(c) => registerPassword = c} /><br />
                 <input type="password" className="form-control" placeholder="Confirm Password" ref={(c) => registerPasswordConfirm = c} /><br />
                 <input type="email" className="form-control" id="registerEmail" placeholder="Email" ref={(c) => registerEmail = c} /><br />
+                
+                <input type="email" className="form-control" id="registerEmail" placeholder="Confirmation Code" ref={(c) => registerCode = c} /><br />
+                <div className="button-gradient top-div">
+                    <input type="button" id="registerButton" className="btn btn-light" value="Send Confirmation" onClick={validateEmail} />
+                </div>
                 <div className="button-gradient top-div">
                     <input type="button" id="loginButton" className="btn btn-light" value="Login" onClick={setLogin} />                
                 </div>
@@ -161,13 +176,13 @@ function Login()
 function setLogin() {
     document.getElementById("loginDiv").style.display = "inline-block";
     document.getElementById("registerDiv").style.display = "none";
-    document.getElementById("loginField").style.paddingBottom = "22%";
+    // document.getElementById("loginField").style.paddingBottom = "22%";
 }
 
 function setRegister() {
     document.getElementById("loginDiv").style.display = "none";
     document.getElementById("registerDiv").style.display = "inline-block";
-    document.getElementById("loginField").style.paddingBottom = "9.3%";
+    // document.getElementById("loginField").style.paddingBottom = "9.3%";
 }
 
 export default Login;
