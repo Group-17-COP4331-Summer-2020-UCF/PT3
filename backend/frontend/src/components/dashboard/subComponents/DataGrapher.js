@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import '../../../css/dashboard/subComponents/DataGrapher.css';
 import React from 'react';
-import { Row } from 'react-bootstrap'
+//import { Row } from 'react-bootstrap'
 import { Pie } from 'react-chartjs-2';
 import Cookie from '../../general/Cookie'
 
@@ -9,7 +9,7 @@ const BASE_URL = 'https://large-project-2020.herokuapp.com/';
 
 var passCount = 0;
 var failCount = 0;
-const searchTests = async event => {
+let searchTests = async function() {
     var endpoint = null;
     switch (Cookie.getCookie("test")) {
         case "army":
@@ -34,14 +34,14 @@ const searchTests = async event => {
     var res = JSON.parse(await response.text());
     console.log(res);
     var temp;
-    while(res.hasNext()){
+    /*while(res.hasNext()){
         temp = res.next();
-        if(temp.passed == "true"){
+        if(temp.passed === "true"){
             passCount++;
-        }else if(temp.passed == "false"){
+        }else if(temp.passed === "false"){
             failCount++;
         }
-    }
+    }*/
     return;
 };
 
@@ -61,6 +61,7 @@ const state = {
 
 export default class App extends React.Component {
     render() {
+        searchTests();
         return (
             <div>
                 <Pie
