@@ -29,7 +29,8 @@ class DataGrapher extends React.Component {
     }
 
     updateData = () =>{
-        this.state.data = [Cookie.getCookie("passCount"), Cookie.getCookie("failCount")]
+        this.state.data = [Cookie.getCookie("passCount"), Cookie.getCookie("failCount")];
+        window.location.reload();
     }
 
     componentDidUpdate(prevProps, prevState) {
