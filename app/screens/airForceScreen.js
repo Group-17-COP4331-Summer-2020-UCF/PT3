@@ -5,6 +5,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import { MaterialCommunityIcons } from "react-native-vector-icons";
 import { mdiCogOutline } from "@mdi/js";
+
 import CountDown from "react-native-countdown-component";
 
 import { styles } from "../styles/styles.js";
@@ -12,7 +13,36 @@ import { styles } from "../styles/styles.js";
 import FancyButton from "../components/fancyButton.js";
 
 export const AirForceScreen = ({ navigation }) => {
+  const baseURL = "https://large-project-2020.herokuapp.com/";
   const [testNum, setNum] = useState("1");
+  const [userSex, setSex] = useState("Male");
+  const [userAge, setAge] = useState("18");
+  const [isChecked, setChecked] = useState(false);
+  const [isMale, setMale] = useState(false);
+  const [isFemale, setFemale] = useState(false);
+
+  const sendUserInfo = async (event) => {
+    var js = '{"sex":"' + userSex + '","age":"' + userAge + '"}';
+
+    console.log(js);
+    try {
+      const response = await fetch(
+        baseURL + "/AirForceStandards/searchAirForceStandard",
+
+        {
+          method: "POST",
+          body: js,
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+    } catch (e) {
+      alert(e.toString());
+      console.log(e);
+      return;
+    }
+
+    return setNum("2");
+  };
 
   if (testNum == "1") {
     return (
@@ -51,9 +81,50 @@ export const AirForceScreen = ({ navigation }) => {
                 paddingTop: 35,
               }}
             >
-              <FancyButton text="Start" onPress={() => setNum("2")} />
-              <FancyButton text="Exit" onPress={() => navigation.goBack()} />
+              <FancyButton text="Start" onPress={() => setNum("2a")} />
             </View>
+          </View>
+        </View>
+      </LinearGradient>
+    );
+  } else if (testNum == "2a") {
+    return (
+      <LinearGradient colors={["#20E9A9", "#5762D5"]} style={styles.screen}>
+        <Text style={{ fontSize: 20, fontWeight: "bold" }}>Select Gender</Text>
+        <View
+          style={{
+            paddingBottom: 75,
+            paddingTop: 75,
+            height: 270,
+            justifyContent: "space-between",
+          }}
+        >
+          <View>
+            <CheckBox
+              title="Male"
+              checked={isMale}
+              onPress={() => setMale(!isMale)}
+            />
+            <CheckBox
+              title="Female"
+              checked={isFemale}
+              onPress={() => setFemale(!isFemale)}
+            />
+          </View>
+        </View>
+
+        <View style={{ paddingBottom: 75, paddingTop: 75 }}>
+          <Text style={{ fontSize: 20, fontWeight: "bold" }}>User Age</Text>
+          <View style={{ paddingBottom: 100 }}>
+            <TextInput
+              style={styles.inputTextBox}
+              placeholder="User Age"
+              onChangeText={(age) => setAge(age)}
+              placeholderTextColor="#504747"
+            />
+          </View>
+          <View style={{ height: 120, justifyContent: "space-between" }}>
+            <FancyButton text="Submit" onPress={sendUserInfo} />
           </View>
         </View>
       </LinearGradient>
@@ -186,7 +257,7 @@ export const AirForceScreen = ({ navigation }) => {
     return (
       <LinearGradient colors={["#20E9A9", "#5762D5"]} style={styles.screen}>
         <CountDown
-          until={120}
+          until={60}
           size={0}
           timeToShow={["M", "S"]}
           timeLabels={{ m: null, s: null }}
@@ -197,7 +268,7 @@ export const AirForceScreen = ({ navigation }) => {
             Sit-Ups{" "}
           </Text>
           <CountDown
-            until={120}
+            until={60}
             onFinish={() => setNum("7")}
             size={40}
             digitStyle={{ backgroundColor: "#5762D5" }}
