@@ -4,6 +4,6 @@
 
 #homeDisplay {
     background-color: black;
-    max-width: 85%;
-    max-height: 70%;
+    max-width: 75%;
+    max-height: auto;
 }

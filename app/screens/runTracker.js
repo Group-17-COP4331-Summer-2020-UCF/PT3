@@ -93,7 +93,6 @@ export class RunTracker extends React.Component {
   }
 
   */
-
   componentDidMount() {
     // this.requestCameraPermission();
     navigator.geolocation.getCurrentPosition(
@@ -108,7 +107,6 @@ export class RunTracker extends React.Component {
       { enableHighAccuracy: false, timeout: 200000, maximumAge: 1000 }
     );
     const { coordinate } = this.state;
-
     this.watchID = navigator.geolocation.watchPosition(
       (position) => {
         const { routeCoordinates, distanceTravelled } = this.state;
