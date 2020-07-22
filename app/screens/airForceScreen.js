@@ -12,7 +12,37 @@ import { styles } from "../styles/styles.js";
 import FancyButton from "../components/fancyButton.js";
 
 export const AirForceScreen = ({ navigation }) => {
+  const baseURL = "https://large-project-2020.herokuapp.com/";
   const [testNum, setNum] = useState("1");
+  const [userSex, setSex] = useState("Male");
+  const [userAge, setAge] = useState("18");
+
+  const sendUserInfo = async (event) => {
+      var js = '{"sex":"' +
+      userSex +
+      '","age":"' +
+      userAge +
+      '"}';
+
+      console.log(js);
+      try {
+        const response = await fetch(
+            baseURL + "/AirForceStandards/searchAirForceStandard",
+
+            {
+            method: "POST",
+            body: js,
+            headers: { "Content-Type": "application/json" },
+            }
+        );
+      } catch (e) {
+      alert(e.toString());
+      console.log(e);
+      return;
+    }
+
+      return setNum("2");
+  }
 
   if (testNum == "1") {
     return (
@@ -51,14 +81,40 @@ export const AirForceScreen = ({ navigation }) => {
                 paddingTop: 35,
               }}
             >
-              <FancyButton text="Start" onPress={() => setNum("2")} />
+              <FancyButton text="Start" onPress={() => setNum("2a")} />
               <FancyButton text="Exit" onPress={() => navigation.goBack()} />
             </View>
           </View>
         </View>
       </LinearGradient>
     );
-  } else if (testNum == "2") {
+  }else if(testNum == "2a") {
+    return(
+       <LinearGradient colors={["#20E9A9", "#5762D5"]} style={styles.screen}>
+                  <View style={{ paddingBottom: 75, paddingTop: 75 }}>
+          <Text style={{ fontSize: 20, fontWeight: "bold" }}>
+            User Sex
+          </Text>
+           <FancyButton text="Male" onPress={() => setSex("Male")} />
+           <FancyButton text="Female" onPress={() => setSex("Female")} />
+        </View>
+      
+      <View style={{ paddingBottom: 75, paddingTop: 75 }}>
+          <Text style={{ fontSize: 20, fontWeight: "bold" }}>
+            User Age
+          </Text>
+          <TextInput
+            style={styles.inputTextBox}
+            placeholder="User Age"
+            onChangeText={(age) => setAge(age)}
+            placeholderTextColor="#504747"
+          />
+          <FancyButton text="Submit" onPress={sendUserInfo} />
+          <FancyButton text="Continue" onPress={() => setNum("2")} />
+        </View>
+       </LinearGradient>
+	);
+  }else if (testNum == "2") {
     return (
       <LinearGradient colors={["#20E9A9", "#5762D5"]} style={styles.screen}>
         <View style={{ padding: 25 }}>
@@ -186,7 +242,7 @@ export const AirForceScreen = ({ navigation }) => {
     return (
       <LinearGradient colors={["#20E9A9", "#5762D5"]} style={styles.screen}>
         <CountDown
-          until={120}
+          until={60}
           size={0}
           timeToShow={["M", "S"]}
           timeLabels={{ m: null, s: null }}
@@ -197,7 +253,7 @@ export const AirForceScreen = ({ navigation }) => {
             Sit-Ups{" "}
           </Text>
           <CountDown
-            until={120}
+            until={60}
             onFinish={() => setNum("7")}
             size={40}
             digitStyle={{ backgroundColor: "#5762D5" }}
