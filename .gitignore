@@ -15,3 +15,5 @@ web-build/
 # Personal
 backend/deploy.sh
 node_modules
+
+/backend/.env
