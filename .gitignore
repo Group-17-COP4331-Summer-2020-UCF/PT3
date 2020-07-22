@@ -14,7 +14,7 @@ web-build/
 
 # Personal
 # backend/deploy.sh
-backend/node_modules
-backend/frontend/node_modules
-app/node_modules
-app/.expo
+/backend/node_modules
+/backend/frontend/node_modules
+/app/node_modules
+/app/.expo
