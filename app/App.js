@@ -18,6 +18,7 @@ import { SettingsScreen } from "./screens/settingsScreen.js";
 import { RunTracker } from "./screens/runTracker.js";
 import { Success } from "./screens/success.js";
 import { Fail } from "./screens/fail.js";
+import { Confirm } from "./screens/confirm.js";
 
 // Imports ----------------------------------------------------------------------------------------------
 
@@ -40,6 +41,7 @@ export default function App() {
         <Stack.Screen name="Map" component={RunTracker} />
         <Stack.Screen name="Success" component={Success} />
         <Stack.Screen name="Fail" component={Fail} />
+        <Stack.Screen name="Confirm" component={Confirm} />
       </Stack.Navigator>
     </NavigationContainer>
   );

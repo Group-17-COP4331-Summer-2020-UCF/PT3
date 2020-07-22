@@ -65,12 +65,12 @@ export const SignUpScreen = ({ navigation }) => {
       .then((response) => response.json())
       .then((responseJSON) => {
         setLoading(false);
-        console.log(responseJSON);
-        if (responseJSON == "User added!") {
+        console.log(responseJSON.Message);
+        if (responseJSON.Message == "Email has been sent") {
           setIsRegistraionSuccess(true);
-          console.log("Registration Successful. Please Login to proceed");
-          alert("User Registered");
-          return navigation.navigate("Login");
+          console.log("Email Sent. Confirm Email.");
+          //alert("Verify Email");
+          return navigation.navigate("Confirm");
         } else {
           setErrortext("Registration Unsuccessful");
         }
@@ -82,6 +82,9 @@ export const SignUpScreen = ({ navigation }) => {
       });
     if (isRegistraionSuccess) {
       console.log("It was a success bitches!!");
+      () => {
+        navigation.navigate("Confirm");
+      };
     }
   };
 
