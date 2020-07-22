@@ -9,7 +9,7 @@ import CountDown from "react-native-countdown-component";
 
 import { styles } from "../styles/styles.js";
 
-import { FancyButton } from "../components/fancyButton.js";
+import FancyButton from "../components/fancyButton.js";
 
 export const AirForceScreen = ({ navigation }) => {
   const [testNum, setNum] = useState("1");
@@ -18,84 +18,250 @@ export const AirForceScreen = ({ navigation }) => {
     return (
       <LinearGradient colors={["#20E9A9", "#5762D5"]} style={styles.screen}>
         <View>
-          <Button title="Begin Test" onPress={() => setNum("2")} />
-          <Button title="Back" onPress={() => navigation.goBack()} />
+          <Text
+            style={{
+              fontSize: 40,
+              //lineHeight: 100,
+              //textAlign: "justify",
+              fontWeight: "bold",
+            }}
+          >
+            Press 'Start' to Begin
+          </Text>
+          <View style={{ height: 600 }}>
+            <View
+              style={{
+                paddingLeft: 50,
+                paddingTop: 100,
+              }}
+            >
+              <Image
+                style={{
+                  width: 300,
+                  height: 300,
+                  //paddingHorizontal: 100,
+                }}
+                source={require("../img/ex6.png")}
+              />
+            </View>
+            <View
+              style={{
+                justifyContent: "space-between",
+                height: 150,
+                paddingTop: 35,
+              }}
+            >
+              <FancyButton text="Start" onPress={() => setNum("2")} />
+              <FancyButton text="Exit" onPress={() => navigation.goBack()} />
+            </View>
+          </View>
         </View>
       </LinearGradient>
     );
   } else if (testNum == "2") {
     return (
       <LinearGradient colors={["#20E9A9", "#5762D5"]} style={styles.screen}>
-        <View>
-          <CountDown until={3} onFinish={() => setNum("3")} size={40} />
-          <Button title="Back" onPress={() => navigation.goBack()} />
+        <View style={{ padding: 25 }}>
+          <Text style={{ fontSize: 25, lineHeight: 100, textAlign: "center" }}>
+            {" "}
+            Starting in:{" "}
+          </Text>
+          <CountDown
+            until={3}
+            onFinish={() => setNum("3")}
+            size={40}
+            digitStyle={{ backgroundColor: "#5762D5" }}
+            digitTxtStyle={{ color: "#20E9A9" }}
+            timeToShow={["M", "S"]}
+            timeLabels={{ m: "min", s: "sec" }}
+          />
+          <FancyButton text="Exit Test" onPress={() => navigation.goBack()} />
         </View>
       </LinearGradient>
     );
   } else if (testNum == "3") {
-    //<CountDown />;
     return (
       <LinearGradient colors={["#20E9A9", "#5762D5"]} style={styles.screen}>
-        <CountDown until={60} size={0} />
-        <View>
-          <CountDown until={60} onFinish={() => setNum("4")} size={40} />
-          <Button title="Skip Workout" onPress={() => setNum("4")} />
-          <Button title="Back" onPress={() => navigation.goBack()} />
+        <View style={{ padding: 25 }}>
+          <CountDown until={60} size={0} />
+          <Text style={{ fontSize: 40, lineHeight: 100, textAlign: "center" }}>
+            {" "}
+            Push-Ups{" "}
+          </Text>
+
+          <CountDown
+            until={60}
+            onFinish={() => setNum("4")}
+            size={40}
+            digitStyle={{ backgroundColor: "#5762D5" }}
+            digitTxtStyle={{ color: "#20E9A9" }}
+            timeToShow={["M", "S"]}
+            timeLabels={{ m: "min", s: "sec" }}
+          />
+
+          <FancyButton text="Skip Test" onPress={() => setNum("4")} />
+          <FancyButton text="Exit Test" onPress={() => navigation.goBack()} />
         </View>
       </LinearGradient>
     );
   } else if (testNum == "4") {
     return (
       <LinearGradient colors={["#20E9A9", "#5762D5"]} style={styles.screen}>
-        <CountDown until={300} size={0} />
-        <CountDown until={300} size={0} />
-        <View>
-          <CountDown until={300} onFinish={() => setNum("5")} size={20} />
+        <Text
+          style={{
+            fontSize: 40,
+            //lineHeight: 100,
+            textAlign: "center",
+            fontWeight: "bold",
+          }}
+        >
+          Rest & Record Push-Ups
+        </Text>
+        <View style={{ paddingTop: 50 }}>
+          <CountDown
+            until={300}
+            onFinish={() => setNum("5")}
+            size={40}
+            digitStyle={{ backgroundColor: "#5762D5" }}
+            digitTxtStyle={{ color: "#20E9A9" }}
+            timeToShow={["M", "S"]}
+            timeLabels={{ m: "min", s: "sec" }}
+          />
+        </View>
+
+        <View style={{ paddingBottom: 75, paddingTop: 75 }}>
+          <Text style={{ fontSize: 20, fontWeight: "bold" }}>
+            How Many Push-Ups?
+          </Text>
           <TextInput
-            style={styles.inputTextBox}
-            placeholder="   Number of Push-Ups Completed"
+            style={more_styles.inputTextBoxCentered}
+            placeholder=""
             placeholderTextColor="#504747"
           />
-          <Button title="Begin Sit-Ups" onPress={() => setNum("5")} />
-          <Button title="Back" onPress={() => navigation.goBack()} />
+        </View>
+
+        <View
+          style={{
+            justifyContent: "space-between",
+            height: 150,
+            paddingTop: 15,
+            paddingBottom: 15,
+            paddingLeft: 15,
+            paddingRight: 15,
+            width: 375,
+            borderRadius: 5,
+            backgroundColor: "#2a2c2d",
+            borderWidth: 5,
+          }}
+        >
+          <FancyButton text="Begin Sit-Ups" onPress={() => setNum("5")} />
+          <FancyButton text="Exit Test" onPress={() => navigation.goBack()} />
         </View>
       </LinearGradient>
     );
   } else if (testNum == "5") {
     return (
       <LinearGradient colors={["#20E9A9", "#5762D5"]} style={styles.screen}>
-        <View>
-          <CountDown until={3} onFinish={() => setNum("6")} size={40} />
+        <View style={{ padding: 25 }}>
+          <Text style={{ fontSize: 25, lineHeight: 100, textAlign: "center" }}>
+            {" "}
+            Starting in:{" "}
+          </Text>
+          <CountDown
+            until={3}
+            onFinish={() => setNum("6")}
+            size={40}
+            digitStyle={{ backgroundColor: "#5762D5" }}
+            digitTxtStyle={{ color: "#20E9A9" }}
+            timeToShow={["M", "S"]}
+            timeLabels={{ m: "min", s: "sec" }}
+            // timeLabels={{m: 'MM', s: 'SS'}}
+          />
 
-          <Button title="Back" onPress={() => navigation.goBack()} />
+          <FancyButton text="Exit Test" onPress={() => navigation.goBack()} />
         </View>
       </LinearGradient>
     );
   } else if (testNum == "6") {
     return (
       <LinearGradient colors={["#20E9A9", "#5762D5"]} style={styles.screen}>
-        <CountDown until={60} size={0} />
-        <View>
-          <CountDown until={60} onFinish={() => setNum("7")} size={40} />
-          <Button title="Skip Workout" onPress={() => setNum("7")} />
-          <Button title="Back" onPress={() => navigation.goBack()} />
+        <CountDown
+          until={120}
+          size={0}
+          timeToShow={["M", "S"]}
+          timeLabels={{ m: null, s: null }}
+        />
+        <View style={{ padding: 25 }}>
+          <Text style={{ fontSize: 40, lineHeight: 100, textAlign: "center" }}>
+            {" "}
+            Sit-Ups{" "}
+          </Text>
+          <CountDown
+            until={120}
+            onFinish={() => setNum("7")}
+            size={40}
+            digitStyle={{ backgroundColor: "#5762D5" }}
+            digitTxtStyle={{ color: "#20E9A9" }}
+            timeToShow={["M", "S"]}
+            timeLabels={{ m: "min", s: "sec" }}
+          />
+          <FancyButton text="Skip Test" onPress={() => setNum("7")} />
+          <FancyButton text="Back" onPress={() => navigation.goBack()} />
         </View>
       </LinearGradient>
     );
   } else if (testNum == "7") {
     return (
       <LinearGradient colors={["#20E9A9", "#5762D5"]} style={styles.screen}>
-        <CountDown until={300} size={0} />
-        <CountDown until={300} size={0} />
-        <View>
-          <CountDown until={300} onFinish={() => setNum("8")} size={20} />
+        <Text
+          style={{
+            fontSize: 40,
+            //lineHeight: 100,
+            textAlign: "center",
+            fontWeight: "bold",
+          }}
+        >
+          Rest & Record Sit-Ups
+        </Text>
+        <View style={{ paddingTop: 50 }}>
+          <CountDown
+            until={300}
+            onFinish={() => setNum("8")}
+            size={40}
+            digitStyle={{ backgroundColor: "#5762D5" }}
+            digitTxtStyle={{ color: "#20E9A9" }}
+            timeToShow={["M", "S"]}
+            timeLabels={{ m: "min", s: "sec" }}
+          />
+        </View>
+
+        <View style={{ paddingBottom: 75, paddingTop: 75 }}>
+          <Text style={{ fontSize: 20, fontWeight: "bold" }}>
+            How Many Sit-Ups?
+          </Text>
           <TextInput
-            style={styles.inputTextBox}
-            placeholder="   Number of Sit-Ups Completed"
+            style={more_styles.inputTextBoxCentered}
+            placeholder=""
             placeholderTextColor="#504747"
           />
-          <Button title="Begin Run" onPress={() => setNum("8")} />
-          <Button title="Back" onPress={() => navigation.goBack()} />
+        </View>
+
+        <View
+          style={{
+            justifyContent: "space-between",
+            height: 150,
+            paddingTop: 15,
+            paddingBottom: 15,
+            paddingLeft: 15,
+            paddingRight: 15,
+            width: 375,
+            borderRadius: 5,
+            backgroundColor: "#2a2c2d",
+            borderWidth: 5,
+          }}
+        >
+          <FancyButton text="Begin Run" onPress={() => setNum("8")} />
+          <FancyButton text="Exit Test" onPress={() => navigation.goBack()} />
         </View>
       </LinearGradient>
     );
@@ -104,11 +270,11 @@ export const AirForceScreen = ({ navigation }) => {
       <LinearGradient colors={["#20E9A9", "#5762D5"]} style={styles.screen}>
         <View>
           <Text>This is indeed: {testNum}</Text>
-          <Button
-            title="Timed, GPS tracked run. when 1.5 miles is reached move on"
-            onPress={() => setNum("9")}
+          <FancyButton
+            text="Start Run!"
+            onPress={() => navigation.navigate("Map")}
           />
-          <Button title="Back" onPress={() => navigation.goBack()} />
+          <FancyButton text="Back" onPress={() => navigation.goBack()} />
         </View>
       </LinearGradient>
     );
@@ -124,3 +290,18 @@ export const AirForceScreen = ({ navigation }) => {
     );
   }
 };
+
+import { StyleSheet } from "react-native";
+
+const more_styles = StyleSheet.create({
+  inputTextBoxCentered: {
+    width: 200,
+    height: 60,
+    fontSize: 30,
+    fontWeight: "bold",
+    backgroundColor: "#FFFFFF",
+    borderRadius: 8,
+    alignSelf: "center",
+    textAlign: "center",
+  },
+});

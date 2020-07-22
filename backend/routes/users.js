@@ -3,7 +3,7 @@ let User = require("../models/user.model");
 
 const jwt = require('jsonwebtoken');
 const mailgun = require("mailgun-js");
-const DOMAIN = 'sandboxa868a4b5d7ca4dc0affdde3ce1d2441d.mailgun.org';
+const DOMAIN = 'sandboxce531a1343534f8081145c57c308a34c.mailgun.org';
 const mg = mailgun({apiKey: process.env.MAILGUN_APIKEY, domain: DOMAIN});
 
 router.route('/loginUser').post((req, res) => {
@@ -31,17 +31,17 @@ router.route("/addUser").post((req, res) => {
     const data = {
         from: 'PT3@test.com',
         to: email,
-        subject: 'Account Activation Link',
+        subject: 'Account Activation Code',
         html:`
-        <h2>Click on activation link</h2>
-        <p>${process.env.CLIENT_URL}/authentication/activate/${token}</p>
+        <h2>Copy the activation token</h2>
+        <p>${token}</p>
         `
     };
 
     mg.messages().send(data, function (error, body) {
         if(error){
             return res.json({
-                message: err.message
+                error: 'Could not send email'
             })
         }
         return res.json({Message: 'Email has been sent, please activate your account'})
@@ -61,7 +61,7 @@ router.route('/verifyUser').post((req, res) => {
            name,
            username,
            password,
-            email,
+           email,
     });
 
     newUser.save()
