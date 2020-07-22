@@ -13,7 +13,7 @@ web-build/
 .DS_Store
 
 # Personal
-backend/deploy.sh
+# backend/deploy.sh
 node_modules
 
 /backend/.env
