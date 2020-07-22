@@ -1,10 +1,16 @@
 const router = require("express").Router();
 let User = require("../models/user.model");
+const nodemailer = require('nodemailer');
 
 const jwt = require('jsonwebtoken');
-const mailgun = require("mailgun-js");
-const DOMAIN = 'sandboxa868a4b5d7ca4dc0affdde3ce1d2441d.mailgun.org';
-const mg = mailgun({apiKey: process.env.MAILGUN_APIKEY, domain: DOMAIN});
+
+let transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: process.env.EMAIL_USERNAME,
+        pass: process.env.EMAIL_PASSWORD
+    }
+})
 
 router.route('/loginUser').post((req, res) => {
     var query = { username: req.body.username, password: req.body.password};
@@ -31,22 +37,23 @@ router.route("/addUser").post((req, res) => {
     const data = {
         from: 'PT3@test.com',
         to: email,
-        subject: 'Account Activation Link',
+        subject: 'Account Activation Code',
         html:`
-        <h2>Click on activation link</h2>
-        <p>${process.env.CLIENT_URL}/authentication/activate/${token}</p>
+        <h2>Copy the activation token</h2>
+        <p>${token}</p>
         `
     };
 
-    mg.messages().send(data, function (error, body) {
-        if(error){
-            return res.json({
-                message: err.message
-            })
-        }
-        return res.json({Message: 'Email has been sent, please activate your account'})
+    transporter.sendMail(data)
+    .then(function(response) {
+        return res.json({Message: 'Email has been sent'})
         console.log(body);
-    }); 
+    })
+    .catch(function(error) {
+        return res.json({
+            error: 'Could not send email'
+        })
+    });    
 });
 
 router.route('/verifyUser').post((req, res) => {
@@ -61,7 +68,7 @@ router.route('/verifyUser').post((req, res) => {
            name,
            username,
            password,
-            email,
+           email,
     });
 
     newUser.save()

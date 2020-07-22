@@ -18,14 +18,8 @@ function Login()
     var registerPassword;
     var registerPasswordConfirm;
     var registerEmail;
-    var registerCode;
     
     const [message,setMessage] = useState('');
-
-    const validateEmail = async event => {
-        event.preventDefault();
-
-    }
 
     const doLogin = async event => 
     {
@@ -120,7 +114,7 @@ function Login()
                 Cookie.saveCookie("email", document.getElementById("registerEmail").value);
                 Cookie.saveCookie("name", document.getElementById("registerName").value);
                 // redirect
-                window.location.href = '/dashboard';
+                window.location.href = '/verify';
             }
         }
         catch(e)
@@ -158,10 +152,6 @@ function Login()
                 <input type="password" className="form-control" placeholder="Confirm Password" ref={(c) => registerPasswordConfirm = c} /><br />
                 <input type="email" className="form-control" id="registerEmail" placeholder="Email" ref={(c) => registerEmail = c} /><br />
                 
-                <input type="email" className="form-control" id="registerEmail" placeholder="Confirmation Code" ref={(c) => registerCode = c} /><br />
-                <div className="button-gradient top-div">
-                    <input type="button" id="registerButton" className="btn btn-light" value="Send Confirmation" onClick={validateEmail} />
-                </div>
                 <div className="button-gradient top-div">
                     <input type="button" id="loginButton" className="btn btn-light" value="Login" onClick={setLogin} />                
                 </div>
