@@ -7,6 +7,7 @@ import LoginPage from './pages/LoginPage';
 import AboutPage from './pages/AboutPage'
 import DashboardPage from './pages/DashboardPage';
 import HelpPage from './pages/HelpPage';
+import VerifyPage from './pages/VerifyPage';
 
 function App() {
   return (
@@ -25,6 +26,9 @@ function App() {
             </Route>
             <Route path="/help" exact>
               <HelpPage />
+            </Route>
+            <Route path="/verify" exact>
+              <VerifyPage />
             </Route>
               <Redirect to="/" />
           </Switch>  
