@@ -7,8 +7,8 @@ import Cookie from '../../general/Cookie'
 
 const BASE_URL = 'https://large-project-2020.herokuapp.com/';
 
-const passCount = 0;
-const failCount = 0;
+var passCount = 0;
+var failCount = 0;
 const searchTests = async event => {
     var endpoint = null;
     switch (Cookie.getCookie("username")) {
@@ -32,6 +32,7 @@ const searchTests = async event => {
     const response = await fetch(BASE_URL + endpoint,
         { method: 'POST', body: search, headers: { 'Content-Type': 'application/json' } });
     var res = JSON.parse(await response.text());
+    console.log(res);
     var temp;
     while(res.hasNext()){
         temp = res.next();
