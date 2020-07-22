@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Text } from "react-native";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import { MaterialCommunityIcons } from "react-native-vector-icons";
 import { HomeScreen } from "./homeScreen.js";
@@ -14,22 +14,11 @@ export const Tab = createMaterialBottomTabNavigator();
 export const MainScreen = ({ navigation }) => {
   return (
     <Tab.Navigator
-      initialRouteName="Feed"
-      activeColor="#5762D5"
-      style={{ backgroundColor: "orange" }}
+      initialRouteName="Profile"
+      activeColor="#20E9A9"
+      barStyle={{ backgroundColor: "#2a2c2d" }}
+      //style={{ backgroundColor: "red" }}
     >
-      <Tab.Screen
-        name="Feed"
-        component={HomeScreen}
-        options={{
-          tabBarLabel: "Home",
-          tabBarColor: "#2a2c2d",
-          tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="home" color={color} size={26} />
-          ),
-        }}
-      />
-
       <Tab.Screen
         name="Profile"
         component={ProfileScreen}

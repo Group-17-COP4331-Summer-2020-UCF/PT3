@@ -13,9 +13,10 @@ import { FancyButton } from "../components/fancyButton.js";
 
 export const ProfileScreen = ({ navigation }) => {
   return (
-    <LinearGradient
-      colors={["#20E9A9", "#5762D5"]}
-      style={styles.screen}
-    ></LinearGradient>
+    <LinearGradient colors={["#20E9A9", "#5762D5"]} style={styles.screen}>
+      <View>
+        <Text>Welcome: user</Text>
+      </View>
+    </LinearGradient>
   );
 };

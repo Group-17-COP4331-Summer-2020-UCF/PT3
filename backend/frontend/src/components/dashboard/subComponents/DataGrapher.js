@@ -1,71 +1,50 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import '../../../css/dashboard/subComponents/DataGrapher.css';
-import React from 'react';
+import React, { Component } from 'react';
 //import { Row } from 'react-bootstrap'
 import { Pie } from 'react-chartjs-2';
 import Cookie from '../../general/Cookie'
 
 const BASE_URL = 'https://large-project-2020.herokuapp.com/';
 
-var passCount = 0;
-var failCount = 0;
-let searchTests = async function() {
-    var endpoint = null;
-    switch (Cookie.getCookie("test")) {
-        case "army":
-            endpoint = "ArmyTests/searchArmyTest"
-            break;
-        case "navy":
-            endpoint = "NavyTests/searchNavyTest"
-            break;
-        case "marine":
-            endpoint = "MarineTests/searchMarineTest"
-            break;
-        case "airforce":
-            endpoint = "AirForceTests/searchAirForceTest"
-            break;
-        default:
-            console.log("invalid submission: wrong username");
-            return;
-    }
-    var search = '{"username": "' + Cookie.getCookie("username") + '"}';
-    const response = await fetch(BASE_URL + endpoint,
-        { method: 'POST', body: search, headers: { 'Content-Type': 'application/json' } });
-    var res = JSON.parse(await response.text());
-    console.log(res);
-    var temp;
-    /*while(res.hasNext()){
-        temp = res.next();
-        if(temp.passed === "true"){
-            passCount++;
-        }else if(temp.passed === "false"){
-            failCount++;
-        }
-    }*/
-    return;
-};
-
-const state = {
-    labels: ['pass', 'fail'],
-    datasets: [
-        {
-            borderColor: 'black',
-            backgroundColor: [
-                '#00ab66',
-                '#cf142b'
+var passCount = 0, failCount = 0;
+var state;
+class DataGrapher extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            labels: ['pass', 'fail'],
+            datasets: [
+                {
+                    borderColor: 'black',
+                    backgroundColor: [
+                        '#00ab66',
+                        '#cf142b'
+                    ],
+                    data: [Cookie.getCookie("passCount"), Cookie.getCookie("failCount")]
+                }
             ],
-            data: [passCount, failCount]
-        }
-    ]
-}
+            isLoaded: true
+        };
+    }
 
-export default class App extends React.Component {
+    updateData = () =>{
+        this.state.data = [Cookie.getCookie("passCount"), Cookie.getCookie("failCount")];
+        window.location.reload();
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        // check whether client has changed
+        if (prevState.data !== this.state.data) {
+          this.fetchData(this.state.data);
+        }
+      }
+
     render() {
-        searchTests();
         return (
             <div>
                 <Pie
-                    data={state}
+                    data={this.state}
                     options={{
                         layout: {
                             padding: {
@@ -89,8 +68,11 @@ export default class App extends React.Component {
                         }
                     }}
                 />
+                <button onClick={this.updateData}>Update Tests</button>
             </div>
-            
+
         );
     }
 }
+
+export default DataGrapher;
