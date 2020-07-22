@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import '../../../css/dashboard/subComponents/DataGrapher.css';
 import React, { Component } from 'react';
-//import { Row } from 'react-bootstrap'
+import { Col } from 'react-bootstrap'
 import { Pie, Bar } from 'react-chartjs-2';
 import Cookie from '../../general/Cookie'
 
@@ -54,6 +54,7 @@ class DataGrapher extends React.Component {
     render() {
         return (
             <div>
+                <Col>
                 <Pie
                     data={this.state}
                     options={{
@@ -79,7 +80,8 @@ class DataGrapher extends React.Component {
                         }
                     }}
                 />
-                <button onClick={this.updateData}>Update Tests</button>
+                <button onClick={this.updateData}>Update Graphs</button>
+                </Col>
                 <Bar
                     data={barData}
                     width={100}
