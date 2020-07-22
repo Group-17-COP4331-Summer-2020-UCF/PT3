@@ -53,19 +53,7 @@ router.route("/addUser").post((req, res) => {
         return res.json({
             error: 'Could not send email'
         })
-    });
-
-    /*transporter.sendMail(data, function(err, data) {
-        if(error){
-            return res.json({
-                error: 'Could not send email'
-            })
-        } else
-        {
-            return res.json({Message: 'Email has been sent, please activate your account'})
-            console.log(body);
-        }
-    });*/
+    });    
 });
 
 router.route('/verifyUser').post((req, res) => {
