@@ -15,15 +15,17 @@ import FancyButton from "../components/fancyButton.js";
 export const AirForceScreen = ({ navigation }) => {
   const baseURL = "https://large-project-2020.herokuapp.com/";
   const [testNum, setNum] = useState("1");
-  const [userSex, setSex] = useState("Male");
-  const [userAge, setAge] = useState("18");
   const [isChecked, setChecked] = useState(false);
   const [isMale, setMale] = useState(false);
   const [isFemale, setFemale] = useState(false);
 
   const sendUserInfo = async (event) => {
-    var js = '{"sex":"' + userSex + '","age":"' + userAge + '"}';
-
+    if(isMale==true){
+        var js = '{"sex":"' + "Male" + '","age":"' + userAge + '"}';
+	}else if(isFemale==true){
+        var js = '{"sex":"' + "Female" + '","age":"' + userAge + '"}';
+	}
+    
     console.log(js);
     try {
       const response = await fetch(
@@ -349,17 +351,7 @@ export const AirForceScreen = ({ navigation }) => {
         </View>
       </LinearGradient>
     );
-  } else if (testNum == "9") {
-    return (
-      <LinearGradient colors={["#20E9A9", "#5762D5"]} style={styles.screen}>
-        <View>
-          <Text>This is indeed: {testNum}</Text>
-          <Text>"Congrats you finished!"Show you composite Scores</Text>
-          <Button title="Back" onPress={() => navigation.goBack()} />
-        </View>
-      </LinearGradient>
-    );
-  }
+  } 
 };
 
 import { StyleSheet } from "react-native";
