@@ -11,3 +11,14 @@ nav {
     font-weight: bold;
     color: rgb(0, 236, 175);
 }
+
+#about-wrapper {
+    background-color: white;
+    width: 60%;
+    margin: auto;
+    max-width: 800px;
+    font-size: 200%;
+    margin-top: 8%;
+    margin-bottom: 18%;
+    padding: 2%;
+}

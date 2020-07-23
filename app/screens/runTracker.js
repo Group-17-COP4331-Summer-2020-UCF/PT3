@@ -25,7 +25,7 @@ import { styles } from "../styles/styles.js";
 import FancyButton from "../components/fancyButton";
 import haversine from "haversine";
 import { LinearGradient } from "expo-linear-gradient";
-import CountDown from "react-native-countdown-component";
+import Stop from "../components/stopWatch.js";
 
 const LATITUDE_DELTA = 0.009;
 const LONGITUDE_DELTA = 0.009;
@@ -52,47 +52,6 @@ export class RunTracker extends React.Component {
     };
   }
 
-  /*
-  componentDidMount() {
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        this.setState({
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude,
-          error: null,
-        });
-      },
-      (error) => this.setState({ error: error.message }),
-      { enableHighAccuracy: true, timeout: 200000, maximumAge: 1000 }
-    );
-    const { coordinate } = this.state;
-
-    this.watchID = navigator.geolocation.watchPosition((position) => {
-      const { routeCoordinates, distanceTravelled } = this.state;
-      const { latitude, longitude } = position.coords;
-      const newCoordinate = { latitude, longitude };
-      console.log({ newCoordinate });
-
-      this.marker._component.animateMarkerToCoordinate(newCoordinate, 500);
-
-      this.setState({
-        latitude,
-        longitude,
-        routeCoordinates: routeCoordinates.concat([newCoordinate]),
-        distanceTravelled: distanceTravelled + this.calcDistance(newCoordinate),
-        prevLatLng: newCoordinate,
-      });
-      (error) => console.log(error),
-        {
-          enableHighAccuracy: true,
-          timeout: 20000,
-          maximumAge: 1000,
-          distanceFilter: 10,
-        };
-    });
-  }
-
-  */
   componentDidMount() {
     // this.requestCameraPermission();
     navigator.geolocation.getCurrentPosition(
@@ -137,22 +96,6 @@ export class RunTracker extends React.Component {
     );
   }
 
-  // Track moving position
-  /*
-    navigator.geolocation.watchPosition(
-      (position) => {
-        console.log(position);
-      },
-      (error) => console.log(error),
-      {
-        enableHighAccuracy: true,
-        timeout: 20000,
-        maximumAge: 1000,
-        distanceFilter: 10,
-      }
-    );
-  }
-*/
   componentWillUnmount() {
     navigator.geolocation.clearWatch(this.watchID);
   }
@@ -235,30 +178,33 @@ export class RunTracker extends React.Component {
         <View
           style={{
             height: 150,
-            backgroundColor: "beige",
+            backgroundColor: "#20E9A990",
             width: "100%",
-            flexDirection: "row",
+            paddingLeft: 90,
+
+            //flexDirection: "row",
           }}
         >
-          <Text
-            style={{
-              color: "black",
-              fontSize: 35,
-              fontWeight: "bold",
-              fontFamily: "monospace",
-              paddingTop: 40,
-            }}
-          >
-            {parseFloat(this.state.distanceTravelled).toFixed(2)} mi
-          </Text>
-          <CountDown
-            until={120}
-            size={40}
-            digitStyle={{ backgroundColor: "#5762D5" }}
-            digitTxtStyle={{ color: "#20E9A9" }}
-            timeToShow={["M", "S"]}
-            timeLabels={{ m: "min", s: "sec" }}
-          />
+          <View style={{ flexDirection: "row", paddingBottom: 25 }}>
+            <Text style={{ fontWeight: "bold", paddingTop: 13 }}>
+              Distance:{" "}
+            </Text>
+            <Text
+              style={{
+                color: "black",
+                fontSize: 35,
+                fontWeight: "bold",
+                fontFamily: "monospace",
+              }}
+            >
+              {parseFloat(this.state.distanceTravelled).toFixed(2)} mi
+            </Text>
+          </View>
+
+          <View style={{ flexDirection: "row" }}>
+            <Text style={{ fontWeight: "bold", paddingTop: 13 }}>Time: </Text>
+            <Stop />
+          </View>
         </View>
         <FancyButton
           text="End Run"

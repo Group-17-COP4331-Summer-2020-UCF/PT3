@@ -6,7 +6,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 
 function AboutPage() {
     return (
-        <div>
+        <div id="dashboard">
             <Navigation/>
             <div id="about-wrapper">
                 <Row>

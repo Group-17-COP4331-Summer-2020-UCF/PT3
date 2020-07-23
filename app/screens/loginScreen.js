@@ -166,6 +166,7 @@ export const LoginScreen = ({ navigation }) => {
             text="Create Account"
             onPress={() => navigation.navigate("SignUp")}
           />
+
           <FancyButton text="Map" onPress={() => navigation.navigate("Map")} />
         </View>
 

@@ -13,20 +13,21 @@ import { styles } from "../styles/styles.js";
 import FancyButton from "../components/fancyButton.js";
 
 export const AirForceScreen = ({ navigation }) => {
-  const baseURL = "https://large-project-2020.herokuapp.com/";
+  const baseURL = "https://large-project-2020.herokuapp.com";
   const [testNum, setNum] = useState("1");
   const [isChecked, setChecked] = useState(false);
   const [isMale, setMale] = useState(false);
   const [isFemale, setFemale] = useState(false);
+  const [userAge, setUserAge] = useState("18");
 
   const sendUserInfo = async (event) => {
-    if(isMale==true){
-        var js = '{"sex":"' + "Male" + '","age":"' + userAge + '"}';
-	}else if(isFemale==true){
-        var js = '{"sex":"' + "Female" + '","age":"' + userAge + '"}';
-	}
-    
-    console.log(js);
+    if (isMale == true) {
+      var js = '{"sex":"' + "Male" + '","age":"' + userAge + '"}';
+    } else if (isFemale == true) {
+      var js = '{"sex":"' + "Female" + '","age":"' + userAge + '"}';
+    }
+
+    //console.log(js);
     try {
       const response = await fetch(
         baseURL + "/AirForceStandards/searchAirForceStandard",
@@ -37,6 +38,9 @@ export const AirForceScreen = ({ navigation }) => {
           headers: { "Content-Type": "application/json" },
         }
       );
+
+      var res = JSON.parse(await response.text());
+      console.log(res);
     } catch (e) {
       alert(e.toString());
       console.log(e);
@@ -101,7 +105,7 @@ export const AirForceScreen = ({ navigation }) => {
             justifyContent: "space-between",
           }}
         >
-          <View>
+          <View style={{ paddingTop: 50 }}>
             <CheckBox
               title="Male"
               checked={isMale}
@@ -115,13 +119,23 @@ export const AirForceScreen = ({ navigation }) => {
           </View>
         </View>
 
-        <View style={{ paddingBottom: 75, paddingTop: 75 }}>
-          <Text style={{ fontSize: 20, fontWeight: "bold" }}>User Age</Text>
+        <View style={{ paddingBottom: 75, paddingTop: 0 }}>
+          <Text
+            style={{
+              fontSize: 20,
+              fontWeight: "bold",
+              justifyContent: "center",
+              alignContent: "center",
+              paddingLeft: 100,
+            }}
+          >
+            User Age
+          </Text>
           <View style={{ paddingBottom: 100 }}>
             <TextInput
               style={styles.inputTextBox}
               placeholder="User Age"
-              onChangeText={(age) => setAge(age)}
+              onChangeText={(age) => setUserAge(age)}
               placeholderTextColor="#504747"
             />
           </View>
@@ -351,7 +365,7 @@ export const AirForceScreen = ({ navigation }) => {
         </View>
       </LinearGradient>
     );
-  } 
+  }
 };
 
 import { StyleSheet } from "react-native";
