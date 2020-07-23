@@ -9,7 +9,7 @@ const BASE_URL = 'https://large-project-2020.herokuapp.com/';
 
 var passCount = 0, failCount = 0;
 var barData = {
-    labels: ['Situp Goal', 'Situp Avg.', 'Pullup Goal', 'Pullup Avg.', 'Run Goal', 'Run Avg.'],
+    labels: ['Run Goal(min)', 'Your Avg.', 'Pullup/Pushup', 'Your Avg.', 'Situp/Crunch', 'Your Avg.'],
     datasets: [
         {
             backgroundColor: ['#824ce6', '#824ce6', 'blue', 'blue', '#00ab66', '#00ab66'],
@@ -17,7 +17,9 @@ var barData = {
             borderWidth: 2,
             hoverBackgroundColor: 'rgba(255,99,132,0.4)',
             hoverBorderColor: 'rgba(255,99,132,1)',
-            data: [35, 20, 47, 60, 12.30, 15.30]
+            data: [Cookie.getCookie("runGoal"), Cookie.getCookie("runAvg"),
+            Cookie.getCookie("pushupGoal"), Cookie.getCookie("pushupAvg"),
+            Cookie.getCookie("situpGoal"), Cookie.getCookie("situpAvg")]
         }
     ]
 };
@@ -55,32 +57,32 @@ class DataGrapher extends React.Component {
         return (
             <div>
                 <Col>
-                <Pie
-                    data={this.state}
-                    options={{
-                        layout: {
-                            padding: {
-                                top: 30,
-                                bottom: 10
+                    <Pie
+                        data={this.state}
+                        options={{
+                            layout: {
+                                padding: {
+                                    top: 30,
+                                    bottom: 10
+                                }
+                            },
+                            title: {
+                                display: true,
+                                text: 'Pass Rate',
+                                fontSize: 30,
+                                fontColor: '#000000'
+                            },
+                            legend: {
+                                position: 'bottom',
+                                stokeStyle: 'black',
+                                labels: {
+                                    fontColor: '#000000',
+                                    fontSize: 15
+                                }
                             }
-                        },
-                        title: {
-                            display: true,
-                            text: 'Pass Rate',
-                            fontSize: 30,
-                            fontColor: '#000000'
-                        },
-                        legend: {
-                            position: 'bottom',
-                            stokeStyle: 'black',
-                            labels: {
-                                fontColor: '#000000',
-                                fontSize: 15
-                            }
-                        }
-                    }}
-                />
-                <button onClick={this.updateData}>Update Graphs</button>
+                        }}
+                    />
+                    <button onClick={this.updateData}>Update Graphs</button>
                 </Col>
                 <Bar
                     data={barData}
