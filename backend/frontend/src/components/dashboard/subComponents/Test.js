@@ -238,6 +238,9 @@ class Test extends React.Component {
             return;
         }
     }
+    clear() {
+        window.location.reload();
+    }
     componentDidMount() {
         setInterval(() => {
             if (start) {
@@ -300,6 +303,7 @@ class Test extends React.Component {
                     </div>
                     {/* Control Buttons */}
                     <div>
+                        <Button variant="outline-info" onClick={() => this.clear()}>Clear</Button>{' '}
                         <Button variant="outline-success" onClick={() => this.start()}>Start </Button>{' '}
                         <Button variant="outline-danger" onClick={() => this.stop()}>Stop</Button>{' '}
                         <Button variant="outline-info" onClick={() => this.submit()}>Submit</Button>{' '}

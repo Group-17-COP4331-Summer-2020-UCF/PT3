@@ -1,8 +1,21 @@
 #data-grapher-wrapper {
     background-color: white;
-    height: 620px;
-    margin-top: 5%;
-    margin-left: 2.5%;
+    margin: 5%;
     margin-right: 2.5%;
-    margin-bottom: 5%;
-}
+    margin-left: 2.5%;
+    /* height: 80%; */
+    padding-bottom: 5%;
+  }
+  
+  #data-grapher-div {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #pie-chart {
+      width: 100%;
+  }
+
+  #refresh {
+    margin: 4%;
+  }

@@ -21,7 +21,7 @@ function Help()
                 <input type="text" className="form-control" id="registerUser" placeholder="Email code (sent to your email)" /><br />
                 <input type="text" className="form-control" id="registerUser" placeholder="New Password" /><br />
                 <input type="text" className="form-control" id="registerUser" placeholder="Confirm new password" /><br />
-                <h4> Enter your email / check your email / sucess! </h4>
+                <h4> Enter your email </h4>
                 
                 <br />
             </Col>
